@@ -1,0 +1,22 @@
+{
+  "name": "gitbook",
+  "version": "1.0.0",
+  "description": "金庸（1924年3月10日-2018年10月30日），本名查良镛，生于浙江海宁，毕业于剑桥大学，中国武侠小说作家、新闻学家、企业家、政治评论家和社会活动家。他被称为“香港四大才子”，更与古龙、梁羽生合称为“中国武侠小说三剑客”。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DQH123456/gitbook.git"
+  },
+  "author": "DQH123456",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DQH123456/gitbook/issues"
+  },
+  "homepage": "https://github.com/DQH123456/gitbook#readme",
+  "devDependencies":{
+    "gitbook-cli":"^2.3.2"
+  }
+}
