@@ -1,5 +1,7 @@
 # 《图解HTTP》笔记
 
+> HTTP，全名`Hypertext Transfer Protocol`，超文本传输协议
+
 ## 第 1 章 了解web及网络基础
 
 互联网是再TCP/IP协议族的基础上运作起来的
