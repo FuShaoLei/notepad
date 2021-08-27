@@ -13,3 +13,5 @@ jobs:
       uses: zanderzhao/gitbook-action@v1.2.4
       with:
         token: ${{ secrets.PERSONAL_TOKEN }}
+      run: |
+        npm i gitbook-plugin-summary --save
