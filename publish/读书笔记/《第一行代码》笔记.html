@@ -1,0 +1,673 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: antiquewhite;
+            --color-text-main: #A9A9B3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --font-main: 'Noto Serif SC', serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+        body a:hover{
+            color: var(--color-theme-main);
+        }
+
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: auto;
+            background: var(--color-embellish);
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 12px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            color: antiquewhite;
+        }
+        .article-item{
+            margin: 2px 0;
+        }
+    </style>
+    <title>《第一行代码》笔记.md</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main>
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                 <a href="/notepad/index.html">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                > <a href="/notepad/其他/C语言速成.html">C语言速成.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/Kotlin速成.html">Kotlin速成.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书笔记</div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《Java核心技术卷Ⅰ》笔记.html">《Java核心技术卷Ⅰ》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《图解HTTP》笔记.html">《图解HTTP》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《数据结构》笔记.html">《数据结构》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《第一行代码》笔记.html">《第一行代码》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《计算机网络》笔记.html">《计算机网络》笔记.md</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-wrapper">
+            <h1>《第一行代码》笔记</h1>
+<h2>第 1 章 开始启程</h2>
+<p>Google于2008年推出了Android的第一个版本</p>
+<p>Android系统架构：Linux内核层，系统运行库层，应用框架层，应用层</p>
+<h2>第 2 章 快速入门Kotlin编程</h2>
+<p>懒的记录了，相关内容在我另外一篇笔记《Kotlin速成》里就有</p>
+<h2>第 3 章 Activity</h2>
+<h3>使用Intent在Activity之间穿梭</h3>
+<p>1.显示Intent</p>
+<pre><code class="language-kotlin">val intent = Intent(this,SecondActivity::class.java)
+startActivity(intent)
+</code></pre>
+<p>2.隐式Intent</p>
+<pre><code class="language-kotlin">val intent = Intent(&quot;com.example.app.ACTION_MY&quot;)
+intent.addCategory(&quot;com.example.app.CATEGORY_MY&quot;)
+startActivity(intent)
+</code></pre>
+<p>3.向下一个Activity传参</p>
+<pre><code class="language-kotlin">val data = &quot;hello&quot;
+val intent = Intent(this,SecondActivity::class.java)
+intent.putExtra(&quot;data&quot;,data)
+startActivity(intent)
+</code></pre>
+<pre><code class="language-kotlin">// 接收
+val intent = getIntent()
+val data = intent.getStringExtra(&quot;data&quot;)
+println(data)
+</code></pre>
+<p>4.返回数据给上一个Activity</p>
+<pre><code class="language-java">Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+intent.putExtra(&quot;key&quot;, &quot;我是MainActivity,你是谁？&quot;);
+startActivityForResult(intent, REQUEST_CODE);
+</code></pre>
+<pre><code class="language-java">protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == REQUEST_CODE &amp;&amp; resultCode == RESULT_OK){
+        String msg = data.getStringExtra(&quot;returnkey&quot;);
+        Log.d(&quot;MainActivity得到的数据是：&quot;, msg);
+    }
+}
+</code></pre>
+<pre><code class="language-java">Intent intent = getIntent();
+intent.putExtra(&quot;returnkey&quot;,&quot;你好，我是MainActivity 2 &quot;);
+setResult(RESULT_OK,intent);
+finish();
+</code></pre>
+<p>要注意的是，RESULT_OK是系统定义的，表示返回成功，REQUEST_CODE则是自己定义的</p>
+<h3>生命周期的理解</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onCreate</code></td>
+<td><strong>在activity第一次被创建时调用</strong>，通常在这个方法中完成初始化操作（初始化视图等等）</td>
+</tr>
+<tr>
+<td><code>onStart</code></td>
+<td><strong>在activitiy is becoming visible to the user时调用</strong></td>
+</tr>
+<tr>
+<td><code>onResume</code></td>
+<td><strong>在activity与用户交互时调用</strong>，此时activity位于栈顶</td>
+</tr>
+<tr>
+<td><code>onPause</code></td>
+<td><strong>在启动或恢复另一个activiy时调用</strong></td>
+</tr>
+<tr>
+<td><code>onStop</code></td>
+<td><strong>在activity不可见的时候调用</strong>，只要不可见就会调用，比如手机熄屏的时候，切换到另一个应用的时候，都会调用这个方法</td>
+</tr>
+<tr>
+<td><code>onDestroy</code></td>
+<td><strong>在activity被销毁前调调用</strong></td>
+</tr>
+<tr>
+<td><code>onRestart</code></td>
+<td><strong>在activiy重新启动之前调用</strong>，比如由A activity跳转到B activity后，在跳转回来，就会触发A activity的onRestart方法，有一些操作比如横竖屏的转变也会触发到onRestart方法，这时候想保存状态的话可以使用onSaveInstanceState方法</td>
+</tr>
+</tbody>
+</table>
+<h3>启动模式</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>standard</code></td>
+<td><strong>默认的启动模式</strong>，每次启动同一个activity都会创建一个实例</td>
+</tr>
+<tr>
+<td><code>singleTop</code></td>
+<td><strong>栈顶复用模式</strong>，如果发现要启动的activiy正处于栈顶，就直接使用，而不创建，但是如果不处于栈顶，则还是会创建一个新的实例</td>
+</tr>
+<tr>
+<td><code>singleTask</code></td>
+<td><strong>栈内复用模式</strong>，如果发现要启动的activity在栈内，则直接使用，并且使处于其上的其他activitiy出栈，如果要启动的activity不在则创建</td>
+</tr>
+<tr>
+<td><code>singleInstance</code></td>
+<td>指定为singleInstance模式的activity会启用一个新的返回栈来管理这个activity</td>
+</tr>
+</tbody>
+</table>
+<h2>第 4 章 UI</h2>
+<p>常用控件：TextView,Button,EditView,ImageView...等等</p>
+<p>常见布局：LinearLayout,RelativeLayout,FrameLayout,GridLayout,TableLayout</p>
+<p>下面详细讲讲三种常用的布局：LinearLayout,RelativeLayout,FrameLayout</p>
+<p>LinearLayout 线性布局</p>
+<p>可以通过设置属性<code>orientation</code>来设置方向（vertical，horizontal）</p>
+<p>RelativeLayout 相对布局</p>
+<p>各种属性：</p>
+<p>与parent相对的属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>layout_alignParentTop</code></td>
+<td>表示widget的<strong>顶部</strong>和Container的<strong>顶部</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignParentBottom</code></td>
+<td>表示widget的<strong>底部</strong>和Container的<strong>底部</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignParentStart</code></td>
+<td>表示widget的左边和Container的起始边缘对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignParentEnd</code></td>
+<td>表示widget的<strong>左边</strong>和Container的结束边缘对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignParentLeft</code></td>
+<td>表示widget的<strong>左边</strong>和Container的<strong>左边</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignParentRight</code></td>
+<td>表示widget的<strong>右边</strong>和Container的<strong>右边</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_centerInParent</code></td>
+<td>表示widget处于Container平面上的<strong>正中间</strong>。</td>
+</tr>
+<tr>
+<td><code>layout_alignWithParentIfMissing</code></td>
+<td>若设置true，则当该控件layout_toLeftOf, layout_toRightOf等找不到相对的参考widget时，就以父container为参考。</td>
+</tr>
+</tbody>
+</table>
+<p>与widget相对的布局</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>layout_above</code></td>
+<td>表示该widget位于参数值标识的widget的上方。</td>
+</tr>
+<tr>
+<td><code>layout_below</code></td>
+<td>表示该widget位于参数值标识的widget的下方。</td>
+</tr>
+<tr>
+<td><code>layout_alignTop</code></td>
+<td>表示该widget的<strong>顶部</strong>与参数值标识的widget的<strong>顶部</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignBottom</code></td>
+<td>表示该widget的<strong>底部</strong>与参数值标识的widget的**底部*8对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignStart</code></td>
+<td>表示该widget的<strong>起始边缘</strong>与参数值标识的widget的<strong>起始边缘</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignEnd</code></td>
+<td>表示该widget的<strong>结束边缘</strong>与参数值标识的widget的<strong>结束边缘</strong>对齐</td>
+</tr>
+<tr>
+<td><code>layout_alignLeft</code></td>
+<td>表示该widget的<strong>左边</strong>与参数值标识的widget的<strong>左边</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_alignRight</code></td>
+<td>表示该widget的<strong>右边</strong>参数值标识的widget的<strong>右边</strong>对齐。</td>
+</tr>
+<tr>
+<td><code>layout_centerHorizontal</code></td>
+<td>表示widget处于Container<strong>水平方向上的中间</strong>。</td>
+</tr>
+<tr>
+<td><code>layout_centerVertical</code></td>
+<td>表示widget处于Container<strong>垂直方向上的中间</strong>。</td>
+</tr>
+<tr>
+<td><code>layout_alignBaseline</code></td>
+<td>表示该widget的BaseLine与参数值标识的widget的BaseLine对齐。</td>
+</tr>
+<tr>
+<td><code>layout_toLeftOf</code></td>
+<td>表示该widget<strong>位于参数值标识的widget的左方</strong>。</td>
+</tr>
+<tr>
+<td><code>layout_toRightOf</code></td>
+<td>表示该widget<strong>位于参数值标识的widget的右方</strong>。</td>
+</tr>
+<tr>
+<td><code>layout_toStartOf</code></td>
+<td>🚩表示该widget<strong>结束边缘</strong>与参数值标识的widget的<strong>起始边缘</strong>对齐</td>
+</tr>
+<tr>
+<td><code>layout_toEndOf</code></td>
+<td>🚩表示该widget<strong>起始边缘</strong>与参数值标识的widget的<strong>结束边缘</strong>对齐</td>
+</tr>
+</tbody>
+</table>
+<p>FrameLayout 帧布局</p>
+<p>FrameLayout会默认把控件都放于左上角</p>
+<h2>第 5 章 Fragment</h2>
+<h3>生命周期</h3>
+<p>fragment附着于activity，因此，fragment的生命周期和activity的生命周期可谓是紧紧相连在一起，fragment里的许多方法都是基于activity的</p>
+<table>
+<thead>
+<tr>
+<th>生命周期</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onAttach</code></td>
+<td><strong>在fragment和activity建立关联时调用</strong></td>
+</tr>
+<tr>
+<td><code>onCreate</code></td>
+<td><strong>在fragment第一次被创建时调用</strong></td>
+</tr>
+<tr>
+<td><code>onCreateView</code></td>
+<td><strong>在fragment创建视图时调用</strong></td>
+</tr>
+<tr>
+<td><code>onActivityCreated</code></td>
+<td><strong>在与fragment关联的activity创建完毕时调用</strong></td>
+</tr>
+<tr>
+<td><code>onStart</code></td>
+<td><strong>在fragment将要展示给用户时调用 (前提是关联的activity的onStart方法已经完成).</strong></td>
+</tr>
+<tr>
+<td><code>onResume</code></td>
+<td>在fragment可以和用户交互时调用(前提是关联的activity的onResume方法已经完成)</td>
+</tr>
+<tr>
+<td><code>onPause</code></td>
+<td>fragment不再与用户交互时调用</td>
+</tr>
+<tr>
+<td><code>onStop</code></td>
+<td>fragment对用户不可见的时候调用</td>
+</tr>
+<tr>
+<td><code>onDestroyView</code></td>
+<td>当与fragment关联的视图被移除时调用</td>
+</tr>
+<tr>
+<td><code>onDestroy</code></td>
+<td>销毁fragment时调用</td>
+</tr>
+<tr>
+<td><code>onDetach</code></td>
+<td>当fragment和activity接触关联时调用</td>
+</tr>
+</tbody>
+</table>
+<h3>动态加载</h3>
+<pre><code class="language-kotlin">val fragmentManager = supportFragmentManager
+val transaction = fragmentManager.beginTransaction()
+transaction.replace(R.id.right_framelayout,fragment)
+transaction.addToBackStack(null)
+transaction.commit()
+</code></pre>
+<h2>第 6 章 BroadcastReceiver</h2>
+<p>广播接收者，用于接受广播</p>
+<p>广播的分类</p>
+<ul>
+<li>
+<p>标准广播：异步执行的广播，接收者几乎会在同一时间接收到广播，<strong>效率高，但无法截断</strong></p>
+</li>
+<li>
+<p>有序广播：同步执行进行的广播，接收者接收到并处理完自己的逻辑之后才会继续传递，<strong>可以进行截断</strong></p>
+</li>
+</ul>
+<p>具体实现</p>
+<pre><code class="language-kotlin">val intent = Intent(&quot;路径&quot;)
+intent.setPackage(packageName) //! ！！
+// 无序广播
+sendBroadcast(intent)
+// 有序广播
+sendOrderedBroadcast(intent, null)
+</code></pre>
+<p>要注意的是，在Android 8.0 之后，静态注册的BroadcastReceiver是无法接收隐式广播的，加入<code>intent.setPackage(packageName)</code>这行代码之后会将此广播变成显示的广播，否则无法接收到这条广播</p>
+<p>广播的注册方式</p>
+<p>动态注册</p>
+<p>通过代码对广播进行注册</p>
+<pre><code class="language-kotlin">val intentFilter = IntentFilter() // 定义一个过滤器
+intentFilter.addAction(&quot;路径&quot;)
+myReciver = MyReciver()
+registerReceiver(myReciver, intentFilter)//注册
+...
+unregisterReceiver(myReciver) // 取消注册
+</code></pre>
+<p>静态注册</p>
+<p>直接在<code>AndroidManifest</code>文件中进行注册</p>
+<pre><code class="language-xml">&lt;receiver
+    android:name=&quot;.OrderlyReceiver&quot;
+    android:enabled=&quot;true&quot;
+    android:exported=&quot;true&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;io.github.fourcomponent.MY_BROADCAST&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre>
+<h2>第 7 章 数据存储</h2>
+<p>Android提供了 3 种存储方式：文件存储，SharePreferences存储，sqlite数据库存储</p>
+<p>文件存储</p>
+<pre><code class="language-kotlin">// 存储
+val inputString = editView.text.toString()
+val ouput = openFileOutput(&quot;data&quot;,Context.MODE_PRIVATE)
+val writer = BufferedWriter(OutputStreamWriter(ouput))
+writer.use {
+    it.write(inputString)
+}
+// 读取
+val input = openFileInput(&quot;data&quot;)
+val reader = BufferedReader(InputStreamReader(input))
+reader.use{
+    reader.forEachLine {
+        println(it)
+    }
+}
+</code></pre>
+<p>SharePreferences存储</p>
+<pre><code class="language-kotlin">val sp = getSharedPreferences(&quot;data&quot;, Context.MODE_PRIVATE)
+// 存储
+sp.edit().putString(&quot;name&quot;, &quot;Tom&quot;)
+sp.apply()
+// 读取
+sp.getString(&quot;name&quot;,null)
+</code></pre>
+<p>sqlite数据库存储</p>
+<pre><code class="language-kotlin">// 帮助类
+public class MyDatabaseHelper extends SQLiteOpenHelper {
+
+    private String createBook = &quot;create table Book(&quot; +
+            &quot;    id integer primary key autoincrement,&quot; +
+            &quot;    author text,&quot; +
+            &quot;    name text)&quot;;
+
+    public MyDatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(createBook);
+        Log.e(&quot;==&gt; &quot;,&quot;创建数据库成功&quot;);
+    }
+    // 更新，版本号不一样将会执行这个方法
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(&quot;drop table if exists Book&quot;);
+        onCreate(db);
+    }
+}
+// 创建
+MyDatabaseHelper dbHelper = new MyDatabaseHelper(this,&quot;BookStore.db&quot;,null,1);
+SQLiteDatabase db = dbHelper.getWritableDatabase(); // 或者 dbHelper.getReadableDatabase();
+// 增加
+db.execSQL(&quot;insert into Book(author,name) values(?,?)&quot;, new String[]{&quot;鲁迅&quot;, &quot;狂人日记&quot;});
+// 删除
+db.execSQL(&quot;delete from Book where id = ?&quot;, new String[]{&quot;1&quot;});
+// 修改
+db.execSQL(&quot;update Book set name = ? where id = ?&quot;, new String[]{&quot;百草园到三味书屋&quot;, &quot;1&quot;});
+// 查询
+Cursor cursor = db.rawQuery(&quot;select * from Book&quot;, null);
+if (cursor.moveToFirst()) {
+    do {
+        int id = cursor.getInt(cursor.getColumnIndex(&quot;id&quot;));
+        String name = cursor.getString(cursor.getColumnIndex(&quot;name&quot;));
+        String author = cursor.getString(cursor.getColumnIndex(&quot;author&quot;));
+        Log.e(&quot;==&gt; &quot;, &quot;id = &quot; + id + &quot; name = &quot; + name + &quot; author = &quot; + author);
+    } while (cursor.moveToNext());
+}
+// 使用事务
+db.beginTransaction();
+try {
+    // 各种操作
+    db.setTransactionSuccessful();
+} catch (Exception e) {
+    e.printStackTrace();
+} finally {
+    db.endTransaction();
+}
+</code></pre>
+<p>getWritableDatabase和getReadableDatabase方法都是打开或者创建一个数据库，不同的是，当控件满了的时候，getReadableDatabase会以只读的方式打开数据库，而getWritableDatabase会报错</p>
+<h2>第 8 章 ContentProvider</h2>
+<p>权限问题：<strong>从Android 6.0 开始，危险权限需要用户手动授权才可使用</strong></p>
+<p>这一章其余内容根本不想看，先不看了</p>
+<h2>第 9 章 多媒体</h2>
+<p>通知的使用</p>
+<pre><code class="language-kotlin">// 创建NotificationManager
+val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+// 创建通知渠道
+if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
+    val channel = NotificationChannel(&quot;normal&quot;, &quot;Normal&quot;, NotificationManager.IMPORTANCE_DEFAULT)
+    manager.createNotificationChannel(channel)
+}
+// 进行通知
+val intent = Intent(this, MainActivity2::class.java)
+val pi = PendingIntent.getActivity(this, 0, intent, 0)
+
+val notification = NotificationCompat.Builder(this, &quot;normal&quot;)
+.setContentTitle(&quot;this is content title&quot;)
+.setContentText(&quot;this is content text&quot;)
+.setSmallIcon(R.drawable.ic_launcher_foreground)
+.setContentIntent(pi) // 设置点击后触发的事件
+.setAutoCancel(true) // 点击后自动消失
+.build()
+manager.notify(1, notification) // 发送通知
+</code></pre>
+<p>这章其他也不想看了，都是一些比较基础的东西</p>
+<h2>第 10 章 Service</h2>
+<p>service的生命周期</p>
+<p>service的生命周期可以分为两个种情况，一种是不绑定直接启动，一种是被绑定后启动</p>
+<p><strong>不绑定直接启动的生命周期</strong></p>
+<table>
+<thead>
+<tr>
+<th>生命周期</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onCreate</code></td>
+<td>第一次<strong>创建</strong>service时调用</td>
+</tr>
+<tr>
+<td><code>onStartCommand</code></td>
+<td>每次<strong>启动</strong>service时调用</td>
+</tr>
+<tr>
+<td><code>onDestroy</code></td>
+<td>service销毁时调用</td>
+</tr>
+</tbody>
+</table>
+<p>这里要注意理解下<code>onCreate</code>和<code>onStartCommand</code>的区别，<code>onCreate</code>方法只能在整个生命周期中只能使用一次，而<code>onStartCommand</code>可以使用很多次，即每次启动service的时候都会用到<code>onStartCommand</code>，但不是每次都会用到<code>onCreate</code>（因为可能之前被创建后了）</p>
+<p>还有一点要注意的时，<strong>每个service只会存在一个实例</strong></p>
+<p><strong>绑定后启动的生命周期</strong></p>
+<table>
+<thead>
+<tr>
+<th>生命周期</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onCreate</code></td>
+<td>第一次<strong>创建</strong>service时调用，和上面的一样，这里不再赘述</td>
+</tr>
+<tr>
+<td><code>onBind</code></td>
+<td>绑定</td>
+</tr>
+<tr>
+<td><code>onDestroy</code></td>
+<td>service销毁时调用</td>
+</tr>
+</tbody>
+</table>
+<p>具体实现</p>
+<pre><code class="language-kotlin">// 不绑定直接启动
+val intent = Intent(this, MyService::class.java)
+startService(intent)// 开启service
+stopService(intent)// 停止service，这时候会调用onDestroy方法
+// 绑定后启动
+var connnect = object : ServiceConnection {
+   override fun onServiceDisconnected(name: ComponentName?) {
+       TODO(&quot;Not yet implemented&quot;)
+   }
+   override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+       // 在这里会得到一个IBinder接口变量，在这里可以做一些activity和service的交互
+   }
+}
+val intent = Intent(this, MyService::class.java)
+bindService(intent, connnect, Context.BIND_AUTO_CREATE)
+unbindService(connnect)
+</code></pre>
+<p>需要注意的是，一个service只要被启动或者绑定之后，就会处于运行的状态，但是如果一个service不仅被绑定了，而且还被启动了，这时候想要销毁service就必须调用<code>stopService(intent)</code>和<code>unbindService(connnect)</code>这两个方法。</p>
+<p><strong>异步消息处理机制</strong></p>
+<p>由4个部分组成</p>
+<ul>
+<li>Message：消息，线程之间传递的消息</li>
+<li>Handler：处理者，用于发送和处理消息，消息最终都会传递到handleMessage()方法中处理</li>
+<li>MessageQueue：消息队列，用于存放所有通过Handler发送的消息</li>
+<li>Looper：将MessageQueue里的消息传递给Handler的handleMessage()方法中</li>
+</ul>
+<p>逻辑：Handler通过发送Message到MessageQueue里，Looper又将Message传递给Handler的handleMessage()方法</p>
+<h2>第 13 章 Jetpack</h2>
+
+        </div>
+    </article>
+</main>
+</body>
+</html>
+

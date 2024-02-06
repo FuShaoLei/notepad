@@ -1,0 +1,176 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: antiquewhite;
+            --color-text-main: #A9A9B3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --font-main: 'Noto Serif SC', serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+        body a:hover{
+            color: var(--color-theme-main);
+        }
+
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: auto;
+            background: var(--color-embellish);
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 12px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            color: antiquewhite;
+        }
+        .article-item{
+            margin: 2px 0;
+        }
+    </style>
+    <title>《计算机网络》笔记.md</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main>
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                 <a href="/notepad/index.html">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                > <a href="/notepad/其他/C语言速成.html">C语言速成.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/Kotlin速成.html">Kotlin速成.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书笔记</div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《Java核心技术卷Ⅰ》笔记.html">《Java核心技术卷Ⅰ》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《图解HTTP》笔记.html">《图解HTTP》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《数据结构》笔记.html">《数据结构》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《第一行代码》笔记.html">《第一行代码》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《计算机网络》笔记.html">《计算机网络》笔记.md</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-wrapper">
+            <h1>《计算机网络》笔记</h1>
+<p>谢希仁老师版本的，其实也已经看过有两三遍了，但是之前没做比较，现在重读，做做笔记，温故而知新嘛</p>
+<h2>第 1 章 概述</h2>
+<p>互联网的两个基本特点：连通性（用户之间可以交互数据），共享（资源共享）</p>
+<p>互联网的组成：</p>
+<ul>
+<li>边缘部分：连接互联网的主机，用户直接使用</li>
+<li>核心部分：网络和连接网路的路由器，为边缘部分提供服务的</li>
+</ul>
+<p>边缘部分的通信即是计算机之间的通信，通信方式又有两种</p>
+<ul>
+<li>客户-服务器方式（C/S）：client是服务请求方，server是服务提供方</li>
+<li>对等方式（P2P）：无论哪一方都可以是服务请求方或服务提供方</li>
+</ul>
+<p>核心部分起到关键作用的是路由器，其任务是转发收到的分组（即分组交换，优点是高效，灵活，迅速，可靠）</p>
+<p>三种交换方式：</p>
+<ul>
+<li>电路交换：整个报文连续的从源点到终点</li>
+<li>报文交换：整个报文一个结点一个结点的传到终点</li>
+<li>分组交换：单个分组一个结点一个结点的传到终点</li>
+</ul>
+<p>计算机的性能指标：速率，带宽，吞吐量，时延（发送时延，传播时延，处理时延，排队时延），时延带宽积，往返时间，利用率</p>
+<p>网络体系：</p>
+<ul>
+<li>TCP/IP：应用层，运输层，网际层IP，网络接口层</li>
+<li>本书的五层协议：
+<ul>
+<li>应用层：负责应用进程之间的交互工作</li>
+<li>运输层：负责两台主机进程之间通信工作</li>
+<li>网络层：负责为分组交换网上的不同主机提供通信服务，寻找路由</li>
+<li>数据链路层：差错检测，可靠传输</li>
+<li>物理层</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </article>
+</main>
+</body>
+</html>
+
