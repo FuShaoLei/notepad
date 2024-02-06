@@ -1,4 +1,4 @@
-ole -g='F:\notepad'
+ole -g=F:\notepad
 cd publish
 git init
 git remote add origin git@github.com:FuShaoLei/notepad.git
