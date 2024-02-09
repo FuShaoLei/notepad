@@ -155,4 +155,45 @@ add(2, 3, 4, 5); // 你可以传入任意个参数
 
 ## 自定义对象
 
-待补充
+JavaScript中把函数用作类
+
+```javascript
+function makePerson(first, last) {
+  return {
+    first: first,
+    last: last,
+    fullName: function () {
+      return this.first + " " + this.last;
+    },
+    fullNameReversed: function () {
+      return this.last + ", " + this.first;
+    },
+  };
+}
+var s = makePerson("Simon", "Willison");
+s.fullName(); // "Simon Willison"
+s.fullNameReversed(); // Willison, Simon
+fullName(); // undefined undefined
+
+
+```
+
+这里的`this`指向的是当前调用的对象，也就是`s`
+
+如果没有通过`.`去调用，则指向的是全局对象
+
+```javascript
+function Person(first, last) {
+  this.first = first;
+  this.last = last;
+  this.fullName = function () {
+    return this.first + " " + this.last;
+  };
+  this.fullNameReversed = function () {
+    return this.last + ", " + this.first;
+  };
+}
+var s = new Person("Simon", "Willison");
+```
+
+> 我们引入了另外一个关键字：[`new`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new)，它和 `this` 密切相关。它的作用是创建一个崭新的空对象，然后使用指向那个对象的 `this` 调用特定的函数。注意，含有 `this` 的特定函数不会返回任何值，只会修改 `this` 对象本身。`new` 关键字将生成的 `this` 对象返回给调用方，而被 `new` 调用的函数称为构造函数。
