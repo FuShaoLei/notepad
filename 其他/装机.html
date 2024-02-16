@@ -1,0 +1,215 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: antiquewhite;
+            --color-text-main: #A9A9B3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: auto;
+            background: var(--color-embellish);
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 12px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            color: antiquewhite;
+        }
+
+        .article-item {
+            margin: 2px 0;
+        }
+
+        /* 文章样式 */
+        pre {
+            background: var(--color-embellish)!important;
+            padding: 1em;
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+    </style>
+    <title>装机.md</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main>
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                 <a href="/notepad/index.html">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                > <a href="/notepad/其他/电视.html">电视.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/装机.html">装机.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 笔记</div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/C语言笔记.html">C语言笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Git操作.html">Git操作.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/JavaScript_Note.html">JavaScript Note.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Kotlin笔记.html">Kotlin笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Linux系统的一些操作.html">Linux系统的一些操作.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书笔记</div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《Java核心技术卷Ⅰ》笔记.html">《Java核心技术卷Ⅰ》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《图解HTTP》笔记.html">《图解HTTP》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《数据结构》笔记.html">《数据结构》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《第一行代码》笔记.html">《第一行代码》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书笔记/《计算机网络》笔记.html">《计算机网络》笔记.md</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-wrapper">
+            <ul>
+<li>xmp：超频预设，需要手动打开。需要去bios里打开xmp，内存条频率才能达到3200或者3600，否则就会是2133（为了保证兼容性）</li>
+<li>装系统
+<ul>
+<li>开机按<code>delete</code>键，进入bios</li>
+<li>磁盘存储数据的结构
+<ul>
+<li>MBR分区 （Legacy引导）（较老）</li>
+<li>GPT分区（UEFI引导）</li>
+</ul>
+</li>
+<li>开机引导模式
+<ul>
+<li>Legacy引导</li>
+<li>UEFI引导</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>主板的一些驱动：https://www.maxsun.com.cn/2022/1226/5864.html</p>
+
+        </div>
+    </article>
+</main>
+</body>
+</html>
+
