@@ -13,8 +13,6 @@ git config --global user.name "fushaolei"
 
 
 
-
-
 ## 删除本地分支和远程分支
 
 ```
@@ -24,5 +22,19 @@ git branch -d <localBranchName>
 
 // 删除远程分支
 git push origin --delete <remoteBranchName>
+```
+
+
+
+## 查询上个tag到现在的所有信息
+
+```
+git log v4.0.0..HEAD --oneline
+```
+
+## 修改一个远端地址
+
+```
+git remote set-url origin <url>
 ```
 
