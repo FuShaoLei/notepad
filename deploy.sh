@@ -1,4 +1,4 @@
-ole -g='F:\notepad'
+java -jar D:/software/ole/ole.jar -c
 cd publish
 git init
 git remote add origin git@github.com:FuShaoLei/notepad.git
@@ -10,4 +10,3 @@ rm -rf publish
 git add .
 git commit -m "update"
 git push origin master:master
-
