@@ -144,3 +144,48 @@ computed:{
   },
 ```
 
+## v-for
+
+打印对象：
+
+```js
+ students:{
+        name:'张三',
+        sex:'男',
+        score: 100
+      }
+```
+
+
+
+```html
+<ul id="v-for-object" class="demo">
+      <li v-for="(value,name) in students" :key="value">
+        {{name}}: {{ value }}
+      </li>
+</ul>
+```
+
+
+
+## `v-if` 和 `v-show` 的区别
+
+- `v-if`是当判断为true的时候会渲染
+- `v-show`无论有没有判断为true都会渲染
+
+
+
+## 回车按键方法
+
+对于原生的组件
+
+```html
+<input @keyup.enter="submit" />
+```
+
+对于element-ui
+
+```html
+<el-input @keyup.native.enter="submit" v-model="inputTxt"/>
+```
+
