@@ -189,3 +189,87 @@ computed:{
 <el-input @keyup.native.enter="submit" v-model="inputTxt"/>
 ```
 
+
+
+## vue 自定义组件
+
+父给子传参数，子给父传参数，例子：
+
+父vue：
+
+```vue
+<template>
+  <div id="app">
+
+    <div :style="{ fontSize: postFontSize + 'em' }">
+      <ButtonCounter title-name="You Are The Best." @increase="mainIncrease"/>
+    </div>
+
+  </div>
+</template>
+
+<script>
+
+import router from "@/router";
+import ButtonCounter from "@/components/ButtonCounter.vue";
+
+export default {
+  name: 'App',
+  components: {
+    ButtonCounter
+  },
+  data() {
+    return {
+      postFontSize: 1
+    }
+  },
+  methods: {
+   	mainIncrease(...data) {
+      console.log(data)
+      console.log("Hello I'm mainIncrease")
+      this.postFontSize = data[0]
+    }
+  }
+}
+</script>
+
+```
+
+子Vue：
+
+```vue
+<template>
+  <div>
+
+    {{ titleName}} 请输入字号大小：
+    <el-input-number v-model="mFontSize" :min="1"></el-input-number>
+    <div>
+      <button @click="$emit('increase', mFontSize, data)">改变字号</button>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "ButtonCounter",
+  props:{
+    titleName: String,
+  },
+  data() {
+    return {
+      count: 0,
+      mFontSize:1,
+      data:{
+        name:"xiaoming",
+        age: 15
+      }
+    }
+  },
+}
+</script>
+```
+
+
+
+父向子传参数，使用到 子Vue里的props
+
+子向父传参数，用到了 $emit('increase', mFontSize) ，然后在父Vue里往@increase设置一个方法，然后在方法中拿到参数去做改变字号的动作
