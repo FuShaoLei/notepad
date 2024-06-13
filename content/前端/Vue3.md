@@ -168,3 +168,54 @@ const jump = ()=>{
 }
 ```
 
+
+
+## Axios 的简单使用
+
+```js
+axios({
+    url:'/api',
+    method:'get'
+  }).then(response=>{
+    console.log(response)
+  })
+```
+
+就这么简答
+
+不过axios不允许跨域请求，按照下面这么做才能运行跨域请求：
+
+在vue.config.js里：
+
+```js
+import {fileURLToPath, URL} from 'node:url'
+
+import {defineConfig} from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    plugins: [
+        vue(),
+    ],
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        }
+    },
+    server: {
+        proxy: {
+            '/api': {
+                target: 'https://www.runoob.com/try/ajax',  //你要跨域访问的网址
+                changeOrigin: true,   // 允许跨域
+                rewrite: (path) => path.replace(/^\/api/, '') // 重写路径把路径变成空字符
+            }
+        }
+    }
+})
+
+```
+
+主要代码是proxy那一段
+
+这么做就可以跨域请求啦！
