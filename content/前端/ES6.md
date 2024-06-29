@@ -230,6 +230,98 @@ let student3 = {
     }
 }
 
-console.log(student3.getName()) // 清风
+console.log(student3.getName()) 
+```
+
+对象可以直接通过中括号去赋值：
+
+```js
+const obj = {}
+obj.isShow = true
+obj["xx"] = "你好"
+const name = 'rbj'
+obj[name+"_aaa"] = "哦豁，无敌"
+obj["eee"+name] = function (){
+    return "123456789"
+}
+
+console.log(obj) // {isShow: true, xx: '你好', rbj_aaa: '哦豁，无敌', eeerbj: ƒ}
+
+
+// 还可以这么写在一起
+const name = 'rbj'
+const obj = {
+    isShow:true,
+    xx:"你好",
+    [name+"_aaa"]:"哦豁，无敌",
+    ["eee"+name]:function (){
+        return "123456789"
+    }
+}
+```
+
+对象的一些方法：
+
+```js
+// 对象的比较 Object.is(obj1, obj2) , 其实这个is()和普通的=== 差不多，不过对于两个NaN的比较，还是is()比较准确一些
+console.log(NaN === NaN) // false
+console.log(Object.is(NaN, NaN)) // true
+
+
+// 对象的合并 Object.assign(traget,obj1,obj2,...) 这里应该是浅拷贝
+const newObj = Object.assign({s:9},{a:1},{b:2},{c:3})
+console.log(newObj) // {s: 9, a: 1, b: 2, c: 3}
+```
+
+## 6.Symbol
+
+标示独一无二的值
+
+> 最大的用途，用来定义对象的私有属性
+
+```js
+const s1 = Symbol("s1")
+const s2 = Symbol("s1")
+
+console.log(s1)
+console.log(Object.is(s1,s2)) // false
+```
+
+在for循环里找不到key
+
+
+
+## 7. Map和Set
+
+
+
+set
+
+```js
+let setData = new Set()
+setData.add(2)
+setData.add(9.9)
+setData.add("4")
+setData.add("4")
+
+console.log(setData) // {2, 9.9, '4'}
+
+setData.delete(2)
+
+console.log(setData) // {9.9, '4'}
+
+console.log(setData.has("4")) // true
+
+setData.forEach((key,val)=>{
+    console.log(`${key}: ${val}`)
+})
+
+// log 如下
+// 9.9: 9.9
+// 4: 4
+
+// 转换成数组
+const arr = [...setData]
+console.log(arr) // [9.9, '4']
 ```
 
