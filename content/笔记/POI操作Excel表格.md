@@ -116,3 +116,22 @@ public class Main {
     }
 ```
 
+
+
+其他一些工具类：
+
+```java
+ /**
+     * 获取Cell字符串（兼容NUMERIC类型）
+     */
+    private static String getCellStr(@NotNull Cell cell) {
+        String str = "";
+        if (cell.getCellType() == CellType.NUMERIC) {
+            str = NumberToTextConverter.toText(cell.getNumericCellValue());
+        } else if (cell.getCellType() == CellType.STRING){
+            str = cell.getStringCellValue();
+        }
+        return str;
+    }
+```
+
