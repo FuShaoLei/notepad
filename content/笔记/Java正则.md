@@ -122,3 +122,11 @@ https://example.com  --> matches
 - matches：用于检查整个字符串是否与正则匹配
 - find：是否有部分匹配
 
+
+
+
+
+## 学习资料
+
+- https://www.runoob.com/regexp/regexp-tutorial.html
+
