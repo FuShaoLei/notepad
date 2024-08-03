@@ -1,4 +1,4 @@
-## 第 1 章
+## 第 1 章 HTML标记与文档结构
 
 强调标签： `em`
 
@@ -11,7 +11,7 @@ DOM：从浏览器视角来观察页面中的元素以及每个元素的属性�
 
 
 
-## 第 2 章
+## 第 2 章 CSS工作原理
 
 为文档添加样式的三种方式：
 
@@ -293,3 +293,97 @@ img[title="im img"]{
 }
 ```
 
+
+
+### 伪类
+
+
+
+#### UI伪类
+
+例如:
+
+```css
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: red;
+}
+
+a:hover {
+    color: green;
+}
+
+a:active {
+    color: yellow;
+}
+```
+
+还有：
+
+- `focus`：表单输入获取焦点
+- `target`：用户点击了指向页面其他元素的链接，那么这个元素就是`tragert`
+
+
+
+#### 结构化伪类
+
+```html
+<ul>
+        <li> first one </li>
+        <li> second one </li>
+        <li> third one </li>
+        <li> fourth one </li>
+    </ul>
+```
+
+```css
+ul li:first-child { <!--表示选中第一个元素-->
+    color: red;
+}
+
+ul li:last-child { <!--表示选中最后一个元素-->
+    color: green;
+}
+
+ul li:nth-child(1) { <!--表示选中第一个元素-->
+    color: yellow;
+}
+```
+
+
+
+## 伪元素
+
+伪元素是dom中若有实无的元素
+
+常用伪元素：
+
+- `::first-letter`：第一个字
+- `::first-line`：第一行
+- `::before`：前面
+- `::after`：后面
+
+[其他伪元素参考](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements)
+
+
+
+## 层叠
+
+
+
+样式顺序：
+
+1. 浏览器默认样式
+2. 用户样式表
+3. 作者链接样表（按照链接的先后顺序）
+4. 作者嵌入样式
+5. 作者行内样式
+
+
+
+## 第 3 章 定位元素
+
+每一个元素都会在页面上生成一个盒子，默认情况下，每个盒子的边框不可见，背景也是透明的
