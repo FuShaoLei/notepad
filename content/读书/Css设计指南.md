@@ -185,3 +185,111 @@ article * em {
 ```
 
 表示：所有是article的**孙子元素**（不能是子元素）的em标签都会被赋予这个样式
+
+
+
+### 类选择器
+
+例1：
+
+```html
+<h1 class="specialtext">Hello World</h1>
+    <p class="specialtext">this is a sample text</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias deleniti quis laborum odit? Nesciunt eius tempora suscipit accusamus autem iusto facere eveniet! Iure voluptas eveniet fugit at quasi, saepe doloribus.</p>
+```
+
+```css
+.specialtext {
+    font-size: 1.2rem;
+    color: red;
+}
+```
+
+表示：标签中带有`specialtext`的类选择符的就会被选择到
+
+还可以这么写：
+
+```css
+p.specialtext {
+    font-size: 1.2rem;
+    color: green;
+}
+```
+
+表示：只有带类选择符`specialtext`的`p`标签才会被选择到
+
+例2:
+
+```html
+<h1 class="specialtext fix">Hello World</h1>
+    <p class="specialtext">this is a sample text</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias deleniti quis laborum odit? Nesciunt eius tempora suscipit accusamus autem iusto facere eveniet! Iure voluptas eveniet fugit at quasi, saepe doloribus.</p>
+```
+
+我们可以给元素添加多个类
+
+还可以这样去选择拥有两个类的元素：
+
+```css
+.specialtext.fix {
+    border: solid 1px;
+}
+```
+
+注意中间无空格
+
+### ID选择器
+
+```html
+ <h1 id="titletext">Hello World</h1>
+```
+
+```css
+#titletext {
+    color: yellow;
+}
+```
+
+当然也可以这样
+
+```css
+p#titletext {
+    color: yellow;
+}
+```
+
+
+
+### ID和类的区别
+
+- id在页面上是唯一的
+- 类可以是重复的
+
+
+
+### 属性选择符
+
+```html
+<img title="im img">
+```
+
+
+
+**属性名选择符：**
+
+```css
+img[title] {
+    border: solid 1px;
+}
+```
+
+
+
+**属性值选择符：**
+
+```css
+img[title="im img"]{
+    border: solid 1px;
+}
+```
+
