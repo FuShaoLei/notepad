@@ -1,0 +1,304 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #A9A9B3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: auto;
+            background: var(--color-embellish);
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 12px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            color: var(--color-theme-main);
+        }
+
+        .article-item {
+            margin: 2px 0;
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+    </style>
+    <title>Linux系统的一些操作.md</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main>
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                 <a href="/notepad/index.html">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                > <a href="/notepad/其他/电视.html">电视.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/昂达主板开启xmp.html">昂达主板开启xmp.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/相机入门.html">相机入门.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/装机.html">装机.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/Macbook_入门.html">Macbook 入门.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《图解HTTP》笔记.html">《图解HTTP》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《第一行代码》笔记.html">《第一行代码》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《数据结构》笔记.html">《数据结构》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html">《Java核心技术卷Ⅰ》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/Css设计指南.html">Css设计指南.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《计算机网络》笔记.html">《计算机网络》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《穷爸爸，富爸爸》.html">《穷爸爸，富爸爸》.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《软技能》.html">《软技能》.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 笔记</div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Java正则.html">Java正则.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/POI操作Excel表格.html">POI操作Excel表格.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/使用nvm管理node版本.html">使用nvm管理node版本.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Linux系统的一些操作.html">Linux系统的一些操作.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Android玩机.html">Android玩机.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Git操作.html">Git操作.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/C语言笔记.html">C语言笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Kotlin笔记.html">Kotlin笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/JavaScript_Note.html">JavaScript Note.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Maven项目打Jar包.html">Maven项目打Jar包.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 前端</div>
+            <div class="article-item">
+                > <a href="/notepad/前端/ES6.html">ES6.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/前端/Vue2.html">Vue2.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/前端/Vue3.html">Vue3.md</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-wrapper">
+            <h2>定时任务</h2>
+<p>查看所有定时任务</p>
+<pre><code>crontab -l
+</code></pre>
+<p>编辑定时任务</p>
+<pre><code>crontab -e
+</code></pre>
+<h2>vim</h2>
+<p>退出不保存</p>
+<pre><code>:q!
+</code></pre>
+<h2>查看正在执行的jar包</h2>
+<pre><code>jps -l
+</code></pre>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+</script>
+</body>
+</html>
+

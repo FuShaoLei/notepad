@@ -1,0 +1,326 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #A9A9B3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: auto;
+            background: var(--color-embellish);
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 12px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            color: var(--color-theme-main);
+        }
+
+        .article-item {
+            margin: 2px 0;
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+    </style>
+    <title>相机入门.md</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main>
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                 <a href="/notepad/index.html">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                > <a href="/notepad/其他/电视.html">电视.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/昂达主板开启xmp.html">昂达主板开启xmp.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/相机入门.html">相机入门.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/装机.html">装机.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/其他/Macbook_入门.html">Macbook 入门.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《图解HTTP》笔记.html">《图解HTTP》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《第一行代码》笔记.html">《第一行代码》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《数据结构》笔记.html">《数据结构》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html">《Java核心技术卷Ⅰ》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/Css设计指南.html">Css设计指南.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《计算机网络》笔记.html">《计算机网络》笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《穷爸爸，富爸爸》.html">《穷爸爸，富爸爸》.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/读书/《软技能》.html">《软技能》.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 笔记</div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Java正则.html">Java正则.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/POI操作Excel表格.html">POI操作Excel表格.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/使用nvm管理node版本.html">使用nvm管理node版本.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Linux系统的一些操作.html">Linux系统的一些操作.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Android玩机.html">Android玩机.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Git操作.html">Git操作.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/C语言笔记.html">C语言笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Kotlin笔记.html">Kotlin笔记.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/JavaScript_Note.html">JavaScript Note.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/笔记/Maven项目打Jar包.html">Maven项目打Jar包.md</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 前端</div>
+            <div class="article-item">
+                > <a href="/notepad/前端/ES6.html">ES6.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/前端/Vue2.html">Vue2.md</a>
+            </div>
+            <div class="article-item">
+                > <a href="/notepad/前端/Vue3.html">Vue3.md</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-wrapper">
+            <h1>相机入门</h1>
+<p><strong>曝光三要素</strong>：</p>
+<ol>
+<li>光圈：用 <code>f 1/1.2</code> 这样的形式来表示（通常简写为 f1.2）。f1.2 这个 1.2 数值越小 光圈越大 。 会对景深产生影响，因为光圈越大，景深越浅（越小），那么背景就越虚化</li>
+<li>快门： 快门速度越长，光照射到传感器（cmos？）上的时间越久。快门速度越短，越能凝固住物体。所以要抓拍速度快的物体，需要短的快门。如果要延时摄影，需要长快门
+<ul>
+<li>安全快门：保证手不抖的最慢的快门称为安全快门。经验上讲，手持快门的速度不能低于镜头焦距的倒数，例如你的焦距是 50mm，那么你手持拍摄最好不要低于 1/50s （存疑？这里不低于就是要高于，但不应该是高于吧？）</li>
+</ul>
+</li>
+<li>ISO：感光度。感光度越大，图片越亮 。比较低的ISO，成像会比较细腻一些，比较高的ISO，噪点比较多。</li>
+</ol>
+<p><strong>测光</strong>：相机最开始的时候，一切都是手动的，摄影师需要使用测光表，判断出画面所需要的曝光量。现在都是相机自动进行测光，不过有几种模式：多重，中心，点测光</p>
+<p><strong>曝光补偿</strong>：有时候相机的测光并不是我们想要的，那么这时候可以在相机里进行曝光补偿，设置偏高或者偏低</p>
+<p><strong>景深</strong>：指的一个清晰范围。这个清晰范围越短，我们就叫浅景深 （也称景深小）。影响景深的一些因素</p>
+<ul>
+<li>光圈：光圈越大，景深越小；光圈越小，景深越大。</li>
+<li>焦距：焦距越长，景深越小；焦距越短，景深越大。</li>
+<li>对焦距离：在其他条件相同情况下，对焦越近，景深越小。</li>
+<li>相机画幅：画幅越大，景深越小。</li>
+</ul>
+<p><strong>相机对焦区域</strong>：可选择对焦的区域，比如广域，中间，自由点等等</p>
+<p><strong>白平衡</strong>：白平衡的调节就是调节画面的冷暖调，最重要的影响就是色彩的发色</p>
+<p>a6300的模式旋钮功能：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/FuShaoLei/img5@master/202406231729.png" alt="" /></p>
+<p>常用：</p>
+<ul>
+<li>M：手动模式，所有参数分别由自己调节。默认情况下，滚轮调节光圈，转动拨轮调节快门速度，按右键转动拨动调节感光值。</li>
+<li>P：全自动模式，全听相机的，三个参数都是相机定。可以通过转动拨轮增加和减少曝光。</li>
+<li>A：光圈优先模式，自己决定光圈，其它相机决定。调节滚轮调节光圈大小，转动拨轮调节曝光补偿。</li>
+<li>S：快门优先模式，自己决定快门速度，其它相机决定。调节滚轮调节快门速度，转动拨轮调节曝光补偿。</li>
+</ul>
+<hr />
+<p>好文：</p>
+<ul>
+<li><a href="https://sspai.com/post/54753">微单相机入门指南 | 果核指南</a></li>
+</ul>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+</script>
+</body>
+</html>
+
