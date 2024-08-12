@@ -438,3 +438,99 @@ p {
 外边距叠加的规则是，哪个外边距宽就以哪个外边距作为段间距
 
 外边距的单位最好用`em`去表示
+
+
+
+### 浮动与清除
+
+
+
+- `overflow: hidden`
+  - 真正用途是防止包含元素被超大内容撑大
+  - 另外一个作用：可靠地迫使父元素包含其浮动的子元素
+
+这章需要重复看看
+
+
+
+### 定位
+
+
+
+#### 相对定位
+
+相对本来在文档流中的位置（或者默认位置），例：
+
+```css
+#special {
+    position: relative;
+    top: 20px;
+    left: -10px;
+}
+```
+
+这个意思是：这个id的物体，相对于原来的位置，top距离变成20px（原本是0px），也就是向下移动了20px，left距离变成了-10px，也就是想左移动了10px
+
+
+
+#### 绝对定位
+
+绝对定位会把元素彻底从文档流中拿出来
+
+绝对定位的默认的定位上下文是body元素
+
+```css
+position: absolute;
+```
+
+可以这样修改绝对定位的定位上下文
+
+```html
+<div id="outter">
+
+        <div id="inner">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita, facilis praesentium mollitia
+            corporis ipsum sed quos possimus ducimus quidem modi nulla itaque, dolore, eveniet soluta dignissimos esse
+            iusto enim commodi.</div>
+    </div>
+```
+
+```css
+div#outter{
+    border-top:3px solid red ;
+    width: 200px;
+    margin: 50px 40px;
+    position: relative;
+}
+
+div#inner{
+    top: 10px;
+    left: 20px;
+    background: #ccc;
+    position: absolute;
+}
+```
+
+此时inner的定位上下文是outter
+
+
+
+#### 固定定位
+
+固定定位的定位上下文是视口，因此它不会随着页面滚动而滚动
+
+```css
+position: fixed;
+```
+
+
+
+### 显示属性
+
+- `display:inline`：行内元素
+- `display:block`：块级元素
+
+
+
+### 背景
+
+不想看了。
