@@ -325,3 +325,123 @@ const arr = [...setData]
 console.log(arr) // [9.9, '4']
 ```
 
+
+
+## 8 数组的扩展功能
+
+
+
+### `Array.from()`
+
+```js
+
+// 将伪数组转换成真正的数组
+function add() {
+    console.log(arguments); // 伪数组
+
+    const arr = Array.from(arguments) // 转换成真正的数组
+    console.log(arr); 
+    
+  	const arrChange = Array.from(arguments, ele => ele * 2) // 还可以这样，对每个元素都乘于2
+    console.log(arrChange); 
+  
+    const arr2 = [...arguments] // 也可以通过扩展运算符这样去做转换
+    console.log(arr2);
+}
+
+add(1,2,3)
+```
+
+### `Array.of()`
+
+```js
+// 将任意的东西，组合成数组
+console.log(Array.of(1, 23, '3', {id: 1}));
+```
+
+
+
+### `find()`
+
+```js
+let arr = [1, 2, -2, -5, 10, 9]
+
+let num = arr.find(ele => ele < 0) // 找出第一个符合条件的元素
+console.log(num)
+```
+
+findIndex：找出第一个符合条件的元素的索引
+
+### `entries()`
+
+```js
+let arr = [1, 2, -2, -5, 10, 9]
+
+
+for(let index of arr.keys()) {
+    console.log(index);
+}
+
+console.log("-------------");
+
+for(let ele of arr.values()) {
+    console.log(ele);
+}
+
+console.log("-------------");
+
+for(let [index, ele] of arr.entries()) {
+    console.log(index, ele);
+}
+
+console.log("-------------");
+
+let letter = ['a', 'b', 'c']
+let it = letter.entries()
+
+console.log(it.next().value);
+console.log(it.next().value);
+console.log(it.next().value);
+console.log(it.next().value);
+```
+
+
+
+### includes()`
+
+```js
+
+// 返回一个布尔值，表示是否含有当前值
+console.log([1, 2, 3].includes(2));
+console.log([1, 2, 3].includes(6));
+```
+
+
+
+## 9 迭代器
+
+
+
+```js
+let letter = ['a', 'b', 'c']
+
+let ite = letter[Symbol.iterator]()
+
+console.log(ite.next());
+console.log(ite.next());
+console.log(ite.next());
+console.log(ite.next());
+```
+
+
+
+- 迭代器上一个借口
+- 迭代器上用于遍历数据结构的指针
+
+
+
+## 10 生成器
+
+
+
+明天看...
