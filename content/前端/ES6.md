@@ -442,6 +442,100 @@ console.log(ite.next());
 
 ## 10 生成器
 
+使用`function*`去定义
+
+```js
+function* getNum() {
+    console.log("one");
+    yield 2;
+    console.log("two");
+    yield 3;
+    console.log("three");
+}
+
+let result = getNum() // 会返回一个迭代器
+console.log(result.next());
+console.log(result.next());
+console.log(result.next());
+```
 
 
-明天看...
+
+简单理解：
+
+- yield是暂停执行
+- next是恢复执行
+
+---
+
+```js
+function* add() {
+    console.log("start");
+
+    let x = yield '2'
+    console.log("x => " + x);
+    
+    let y = yield '3'
+    console.log("y => " + y);
+
+    return x+y;
+}
+
+
+let fn = add()
+console.log(fn.next());
+console.log(fn.next(20)); // 此时才真正的会给x赋值
+console.log(fn.next(10)); // 此时会给y赋值，然后返回{value: 30, done: true}
+```
+
+
+
+使用场景：为不具备iterator借口的对象提供遍历操作
+
+
+
+## Promise对象
+
+
+
+保存着未来才会结束的事件（异步操作）的一个结果
+
+
+
+特点：
+
+1. 三个状态 Pending（进行） Resolved（成功） Rejected（失败）
+2. 一旦状态改变，就不会再变
+
+
+
+```js
+let pro = new Promise(function(resolved,rejected) {
+    const res = {
+        code: 200,
+        data: {
+            name: "Jhon",
+            age: 20
+        },
+        error:{
+            msg:"fuck the world"
+        }
+    }
+
+    setTimeout(()=>{
+        if(res.code === 200) {
+            resolved(res.data)
+        } else {
+            rejected(res.error)
+        }
+    }, 1000)
+})
+
+
+console.log(pro);
+
+pro.then((result)=>{
+    console.log(result);
+})
+```
+
