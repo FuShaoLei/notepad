@@ -1,6 +1,6 @@
 # Vue3
 
-
+参考：
 
 ## 声明为响应式
 
@@ -23,11 +23,60 @@ console.log("count = "+count.value)
 
 
 
-## 父Vue给子Vue传数据
+## 自定义组件
+
+子Vue
+
+```html
+<script setup>
+// 定义props
+const props = defineProps({
+  blog: {
+    type: Object,
+    required: true // 是否是必要的
+  }
+})
+
+// 定义emit
+const emit = defineEmits(['confirm'])
+function confirmReadMore() {
+  emit('confirm', "you click blog title = " + props.blog.title)
+}
+
+// 操作slot
+import { useSlots } from 'vue'
+
+const slots = useSlots()
+
+</script>
+
+<template>
+  <div class="blog-wrapper">
+    <h3> {{ blog.title }}</h3>
+    <div>作者：{{ blog.author }}</div>
+    <p>{{ blog.content }}</p>
+
+    <!--默认插槽-->
+    <div v-if="$slots.default()" style="background: #f3f4f5">
+      <slot></slot>  <!--默认name就是default-->
+    </div>
+
+    <!--具名插槽-->
+    <div v-if="$slots.input" style="background: #333; color: #fff">
+      <slot name="input"></slot>
+    </div>
+
+    <button @click="confirmReadMore()">查看更多</button>
+    <hr>
+  </div>
+</template>
+```
+
+
 
 父Vue
 
-```vue
+```html
 <script setup>
 import {ref} from "vue";
 import BlogItem from "@/components/BlogItem.vue";
@@ -46,73 +95,31 @@ const BlogData = ref([
     content: "Lorem Ipsum 2",
   }
 ])
+
+function handleConfirm(data) {
+  console.log(data)
+  alert(data)
+}
+
 </script>
 
 <template>
   <main>
 
     <div v-for="blog in BlogData" :key="blog.id">
-      <blog-item :blog="blog"/>
+      <blog-item :blog="blog" @confirm="handleConfirm">
+        <template #default>
+          crazy {{ blog.id }}
+        </template>
+        <template #input>
+          special {{ blog.id }}
+        </template>
+      </blog-item>
     </div>
 
   </main>
 </template>
 
-```
-
-子Vue
-
-```vue
-<script setup>
-defineProps({
-  blog: {
-    type: Object,
-    required: true // 是否是必要的
-  }
-})
-</script>
-
-<template>
-  <div class="blog-wrapper">
-    <h3> {{ blog.title }}</h3>
-    <div>作者：{{ blog.author }}</div>
-    <p>{{ blog.content }}</p>
-    <hr>
-  </div>
-</template>
-```
-
-
-
-主要就是用`defineProps`去定义要传入的数据
-
-
-
-## 插槽
-
-有点不太明白什么意思
-
-BlogList.Vue
-
-```vue
-<template>
-  <div class="blog-list-wrapper">
-    <slot></slot>
-  </div>
-</template>
-```
-
-
-
-然后再HomeView中就可以这么使用：
-
-```vue
-
-   <blog-list>
-     <div v-for="blog in BlogData" :key="blog.id">
-       <blog-item :blog="blog"/>
-     </div>
-   </blog-list>
 ```
 
 
