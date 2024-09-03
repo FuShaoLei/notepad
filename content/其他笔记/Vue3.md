@@ -1,6 +1,6 @@
 # Vue3
 
-参考：
+参考：[vue官方文档](https://cn.vuejs.org/guide/introduction.html)
 
 ## 声明为响应式
 
@@ -20,6 +20,58 @@ const count = ref(0)
 ```js
 console.log("count = "+count.value)
 ```
+
+
+
+## 侦听器
+
+### watch()
+
+```js
+// 侦听单个来源
+function watch<T>(
+  source: WatchSource<T>,
+  callback: WatchCallback<T>,
+  options?: WatchOptions
+): StopHandle
+
+// 侦听多个来源
+function watch<T>(
+  sources: WatchSource<T>[],
+  callback: WatchCallback<T[]>,
+  options?: WatchOptions
+): StopHandle
+```
+
+watch默认是懒执行
+
+- 第一个参数：
+  - 可以是一个月返回值的函数
+  - 一个ref
+  - 一个响应式对象
+  - 由以上组合成的数组
+- 回调函数，（新值，旧值）
+- 一个对象，有以下字段
+  - `deep: true`  表示深层侦听，如果源是对象，会对其强制深度便利，以便在深层级变更时触发回调
+  - `immediate: true` 创建侦听器时，立即执行一遍，且当源变化的时候会再次执行
+  - `once: true` 源变化的时候触发一次，就结束了，此后不再触发
+  - `flush: 'post'`  在侦听器回调中能访问被`Vue`更新之后的所属组件的 Dom，需要这么指明（不太明白啥意思
+  - `flush: 'sync'` 会在 Vue 进行任何更新之前触发
+
+### watchEffect()
+
+立即运行一个函数，同时响应式地追踪其以来，并在依赖更改时重新执行
+
+```js
+watchEffect(async () => {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  )
+  data.value = await response.json()
+})
+```
+
+
 
 
 
@@ -123,6 +175,12 @@ function handleConfirm(data) {
 ```
 
 
+
+
+
+---
+
+一些库的使用
 
 ## Piana
 
