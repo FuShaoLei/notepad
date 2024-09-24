@@ -176,6 +176,101 @@ function handleConfirm(data) {
 
 
 
+## 组合式函数
+
+将一些通用的方法封装在js文件里
+
+```js
+import {ref, onMounted, onUnmounted} from 'vue'
+export function useMouse() {
+    const x = ref(0)
+    const y = ref(0)
+
+
+    function update(event) {
+        x.value = event.pageX
+        y.value = event.pageY
+    }
+
+
+    onMounted(() => window.addEventListener('mousemove', update))
+    onUnmounted(() => window.removeEventListener('mousemove', update))
+
+    return {x, y}
+}
+```
+
+然后可以在各个地方去复用
+
+```html
+<script setup>
+import {useMouse} from "@/mouse.js";
+
+const {x, y} = useMouse()
+
+</script>
+
+<template>Mouse position is at: {{ x }}, {{ y }}</template>
+```
+
+
+
+## 依赖注入（解决深层嵌套的子view的数据传输问题）
+
+
+
+App.vue
+
+```html
+<script setup>
+import {provide, ref} from "vue";
+import Child from "@/components/Child.vue";
+
+const inputMsg = ref("世界")
+provide('msg', inputMsg)
+</script>
+
+<template>
+  <input v-model="inputMsg"/>
+  <Child/>
+</template>
+```
+
+
+
+Child.vue
+
+```html
+<script setup>
+import GrandChild from "@/components/GrandChild.vue";
+</script>
+
+<template>
+  <GrandChild/>
+</template>
+```
+
+GrandChild.vue
+
+```html
+<script setup>
+import {inject} from "vue";
+
+const msg = inject("msg", "World") // 可以设定默认值
+</script>
+
+<template>
+
+  <div>
+    Hello {{ msg }}
+  </div>
+</template>
+```
+
+
+
+就这样，主view就可以把数据和孙子view组件（深层嵌套的view组件）同步起来了
+
 
 
 ---
