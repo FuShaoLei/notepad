@@ -1,0 +1,518 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>Java正则</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            Java正则
+        </div>
+        <div class="article-wrapper">
+            <h2>简单示例</h2>
+<pre><code class="language-java">import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//TIP To &lt;b&gt;Run&lt;/b&gt; code, press &lt;shortcut actionId=&quot;Run&quot;/&gt; or
+// click the &lt;icon src=&quot;AllIcons.Actions.Execute&quot;/&gt; icon in the gutter.
+public class Main {
+
+
+    static String reg = &quot;.even&quot;; // 匹配任何一个 [X]even 的字符 (包括空字符)
+    public static void main(String[] args) {
+
+        List&lt;String&gt; dataList  = Arrays.asList(&quot;Seven&quot;,&quot;even&quot;,&quot;Maven&quot;,&quot;eleven&quot;,&quot;aaren&quot;,&quot;ueven&quot;,&quot;谁even&quot;,&quot; even&quot;);
+        Pattern pattern = Pattern.compile(reg);
+
+        for (String item : dataList) {
+            Matcher matcher = pattern.matcher(item);
+
+            if (matcher.matches()) {
+                System.err.printf(&quot;%s  --&gt; matches %n&quot;, item);
+            } else {
+                System.err.printf(&quot;%s  --&gt; NOT matches ! %n&quot;, item);
+            }
+
+        }
+
+
+    }
+}
+</code></pre>
+<p>输出：</p>
+<pre><code>Seven  --&gt; matches 
+even  --&gt; NOT matches ! 
+Maven  --&gt; NOT matches ! 
+eleven  --&gt; NOT matches ! 
+aaren  --&gt; NOT matches ! 
+ueven  --&gt; matches 
+谁even  --&gt; matches
+  even  --&gt; matches
+</code></pre>
+<h2>表达式规则</h2>
+<table>
+<thead>
+<tr>
+<th align="center">正则表达式</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>.</code></td>
+<td align="center">匹配任何单个字符。</td>
+</tr>
+<tr>
+<td align="center"><code>?</code></td>
+<td align="center">一次匹配或根本不匹配前面的元素。</td>
+</tr>
+<tr>
+<td align="center"><code>+</code></td>
+<td align="center">与前面的元素匹配一次或多次。</td>
+</tr>
+<tr>
+<td align="center"><code>*</code></td>
+<td align="center">与前面的元素匹配零次或多次。</td>
+</tr>
+<tr>
+<td align="center"><code>^</code></td>
+<td align="center">在正则表达式的开头表示字符串的开始。<br />在字符类中表示字符类的取反。</td>
+</tr>
+<tr>
+<td align="center"><code>$</code></td>
+<td align="center">匹配字符串中的结束位置。</td>
+</tr>
+<tr>
+<td align="center">`</td>
+<td align="center">`</td>
+</tr>
+<tr>
+<td align="center"><code>[abc]</code></td>
+<td align="center">匹配 a 或 b 或 c。</td>
+</tr>
+<tr>
+<td align="center"><code>[a-c]</code></td>
+<td align="center">范围; 匹配 a 或 b 或 c。</td>
+</tr>
+<tr>
+<td align="center"><code>[^abc]</code></td>
+<td align="center">否定，匹配除 a 或 b 或 c 之外的所有内容。</td>
+</tr>
+<tr>
+<td align="center"><code>\s</code></td>
+<td align="center">匹配空白字符。</td>
+</tr>
+<tr>
+<td align="center"><code>\w</code></td>
+<td align="center">匹配单词字符； 等同于<code>[a-zA-Z_0-9]</code></td>
+</tr>
+</tbody>
+</table>
+<p>这里<code>^</code>比较特殊</p>
+<ul>
+<li>在正则表达式的开头表示字符串的开始。</li>
+<li>在字符类中表示字符类的取反。</li>
+</ul>
+<p>比如下面这个正则：</p>
+<pre><code class="language-java">static String reg = &quot;^http[^\\s]*\\.com$&quot;; // 匹配 以 http开头，中间是非空字符的，以.com结尾的字符串
+    public static void main(String[] args) {
+
+        List&lt;String&gt; dataList  = Arrays.asList(&quot;https://www.example.com&quot;,&quot;even&quot;,&quot;Maven&quot;,&quot;eleven&quot;,&quot;aaren&quot;,&quot;https://example.com&quot;);
+        Pattern pattern = Pattern.compile(reg);
+
+        for (String item : dataList) {
+            Matcher matcher = pattern.matcher(item);
+
+            if (matcher.matches()) {
+                System.err.printf(&quot;%s  --&gt; matches %n&quot;, item);
+            } else {
+                System.err.printf(&quot;%s  --&gt; NOT matches ! %n&quot;, item);
+            }
+
+        }
+
+    }
+</code></pre>
+<p>输出：</p>
+<pre><code>https://www.example.com  --&gt; matches 
+even  --&gt; NOT matches ! 
+Maven  --&gt; NOT matches ! 
+eleven  --&gt; NOT matches ! 
+aaren  --&gt; NOT matches ! 
+https://example.com  --&gt; matches
+</code></pre>
+<h2>matches 和 find 有何区别</h2>
+<ul>
+<li>matches：用于检查整个字符串是否与正则匹配</li>
+<li>find：是否有部分匹配</li>
+</ul>
+<h2>学习资料</h2>
+<ul>
+<li>https://www.runoob.com/regexp/regexp-tutorial.html</li>
+</ul>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

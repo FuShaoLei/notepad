@@ -1,0 +1,451 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>相机入门</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            相机入门
+        </div>
+        <div class="article-wrapper">
+            <h2>曝光三要素</h2>
+<ol>
+<li>光圈：用 <code>f 1/1.2</code> 这样的形式来表示（通常简写为 f1.2）。f1.2 这个 1.2 数值越小 光圈越大 。 会对景深产生影响，因为光圈越大，景深越浅（越小），那么背景就越虚化</li>
+<li>快门： 快门速度越长，光照射到传感器（cmos）上的时间越久。快门速度越短，越能凝固住物体。所以要抓拍速度快的物体，需要短的快门。如果要延时摄影，需要长快门
+<ul>
+<li>安全快门：保证手不抖的最慢的快门称为安全快门。经验上讲，手持快门的速度不能低于镜头焦距的倒数，例如你的焦距是 50mm，那么你手持拍摄最好不要低于 1/50s （也就是要在 1/60s 1/70s这样的快门速度）</li>
+</ul>
+</li>
+<li>ISO：感光度。感光度越大，图片越亮 。比较低的ISO，成像会比较细腻一些，比较高的ISO，噪点比较多。
+<ul>
+<li>光线不是很充足的情况下，为了提高快门速度，可使用较高的感光度</li>
+</ul>
+</li>
+</ol>
+<h2>测光</h2>
+<p>帮助相机获取正确的曝光，<strong>曝光不足</strong>会导致照片过暗，而<strong>曝光过度</strong>会使照片过亮，有以下几种测光模式</p>
+<ul>
+<li>多重：针对各区域进行测光，然后加权平均</li>
+<li>中心：也是多重测光，不过最大的测光权重给了中央部分</li>
+<li>点测光：只对中央区域很小部分进行测光</li>
+</ul>
+<h2>曝光补偿</h2>
+<p>有时候相机的测光并不是我们想要的，那么这时候可以在相机里进行曝光补偿，设置偏高或者偏低</p>
+<p>原则：白加黑减</p>
+<ul>
+<li>白加：对于浅色对象，测光的结果往往使照片偏灰，应当增加曝光补偿</li>
+<li>黑减：对于深色的，应当增加减少曝光补偿</li>
+</ul>
+<h2>判断曝光是否正常</h2>
+<p>当当前曝光标志为0时，就是准确的曝光</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fushaolei/img5@master/20240925000117793.png" alt="" /></p>
+<h2>手动对焦 以及 曝光锁定 （AF/MF AEL拨杆）</h2>
+<p>也就是</p>
+<ul>
+<li>当拨杆在 AF/MF 时，按下拨杆按钮，就会在自动对焦与手动对焦之间切换
+<ul>
+<li>注：AF = Auto Focus，MF = Manual Focus</li>
+</ul>
+</li>
+<li>当拨杆在 AEL 时， 按xAI拨杆按钮，会锁定当前曝光
+<ul>
+<li>注：AEL = Auto Exposure Lock</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/fushaolei/img5@master/20240925003939162.png" alt="" /></p>
+<h2>景深</h2>
+<p>指的一个清晰范围。这个清晰范围越短，我们就叫浅景深 （也称景深小）。影响景深的一些因素</p>
+<ul>
+<li>光圈：光圈越大，景深越小；光圈越小，景深越大。</li>
+<li>焦距：焦距越长，景深越小；焦距越短，景深越大。</li>
+<li>对焦距离：在其他条件相同情况下，对焦越近，景深越小。</li>
+<li>相机画幅：画幅越大，景深越小。</li>
+</ul>
+<h2>相机对焦区域</h2>
+<p>可选择对焦的区域，比如广域，中间，自由点等等</p>
+<h2>白平衡</h2>
+<p>通过设置白平衡可以在不同的光照环境下还原景物的真实颜色，A6300中预设的白平衡模式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fushaolei/img5@master/20240925012344145.png" alt="" /></p>
+<h2>A6300的模式旋钮功能：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/FuShaoLei/img5@master/202406231729.png" alt="" /></p>
+<p>常用：</p>
+<ul>
+<li>M：手动模式，所有参数分别由自己调节。默认情况下，滚轮调节光圈，转动拨轮调节快门速度，按右键转动拨动调节感光值。</li>
+<li>P：全自动模式，全听相机的，三个参数都是相机定。可以通过转动拨轮增加和减少曝光。</li>
+<li>A：光圈优先模式，自己决定光圈，其它相机决定。调节滚轮调节光圈大小，转动拨轮调节曝光补偿。</li>
+<li>S：快门优先模式，自己决定快门速度，其它相机决定。调节滚轮调节快门速度，转动拨轮调节曝光补偿。</li>
+<li>AUTO：自动模式，这个对小白最好用，诶嘿嘿</li>
+</ul>
+<h2>视频</h2>
+<p>拍摄慢速视频，在这里去设置，选择带有HFR图标的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/fushaolei/img5@master/20240924235141972.png" alt="" /></p>
+<p>（草这个图好糊，后面再补充一个新的）</p>
+<h2>其他</h2>
+<p>好文：</p>
+<ul>
+<li><a href="https://sspai.com/post/54753">微单相机入门指南 | 果核指南</a></li>
+</ul>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

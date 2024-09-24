@@ -1,0 +1,547 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>Kotlin笔记</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            Kotlin笔记
+        </div>
+        <div class="article-wrapper">
+            <h1>Kotlin</h1>
+<p>kotlin中没有分号</p>
+<p>kotlin中在后边进行类型的声明</p>
+<h2>函数</h2>
+<pre><code class="language-kotlin">/**
+ * main函数，同java一样，程序的入口
+ * Unit表示返回值为空
+ */
+fun main():Unit{
+    println(&quot;Hello Kotlin!&quot;)
+}
+// 带参数的函数
+fun test(x:Int):Int{
+    return x*2
+}
+// 函数参数默认值
+@JvmOverloads // 表示重载，在java代码中可以使用
+fun msg(name: String, age: Int = 19) { // 这里的age默认为19
+    println(&quot;name = $name , age = $age&quot;)
+}
+</code></pre>
+<h2>变量</h2>
+<ul>
+<li>var声明为可变的</li>
+<li>val声明为只读的（相当于Java中加上final的变量）</li>
+</ul>
+<pre><code class="language-kotlin">// 可写成 var age = 18，系统会自动识别
+var age: Int = 18
+val NAME = &quot;JulyPost&quot;
+// 创建对象直接如此，不需要new关键字了
+var person = Person()
+</code></pre>
+<h2>可空类型和不可空类型</h2>
+<p>在kotlin里，所有的变量都默认是<strong>不允许为空</strong>的</p>
+<pre><code class="language-kotlin">var a: String = &quot;abc&quot; // 非空类型
+var b: String? = &quot;cba&quot; // 可空类型
+a = null // 赋空报错
+b = null // 可赋为空
+</code></pre>
+<h2>调用符</h2>
+<pre><code class="language-kotlin">var b: String? = &quot;cba&quot; // 可空类型
+println(b?.length) // 安全调用
+println(b!!.length) // 强制调用
+</code></pre>
+<p>安全调用符号<code>?.</code>会检查是否非空，非空则返回<code>b.length</code>，而强制调用<code>!!.</code>则会强制调用<code>b.length</code></p>
+<h2><code>lateinit</code></h2>
+<p>延迟初始化</p>
+<pre><code class="language-kotlin">lateinit var username:TextView
+</code></pre>
+<h2><code>constructor</code></h2>
+<p>构造器关键字</p>
+<pre><code class="language-kotlin">// 空构造
+constructor()
+// 带参数的构造
+constructor(context:Context)
+// 调用其他构造器
+constructor(context:Context):this(context,null)
+// 调用父类构造器
+constructor(context:Context):super(context,1)
+</code></pre>
+<h2><code>Any</code>和<code>Unit</code></h2>
+<p><code>Any</code>可以对应java中的<code>Object</code></p>
+<p><code>Unit</code>可以对应java中的<code>void</code></p>
+<h2>数组</h2>
+<pre><code class="language-kotlin">var dataList = arrayOf(&quot;xx&quot;, &quot;aa&quot;) // 定义一个数组
+</code></pre>
+<h2>静态函数和属性</h2>
+<ul>
+<li>顶层函数（直接在kt文件里定义函数）</li>
+<li>object声明一个单例对象，可直接使用</li>
+<li>companion object 也是生成一个单例对象</li>
+<li><code>@JvmStatic</code>：通过这个注解，让object和companion object 的内部函数和属性，真正的生成为<strong>静态</strong></li>
+</ul>
+<p>另外，匿名内部类是用的object关键字进行创建的</p>
+<pre><code class="language-kotlin">object : OnClickListener {
+    // ....
+}
+</code></pre>
+<h2>字符串</h2>
+<pre><code class="language-kotlin">val name = &quot;任我行&quot;
+val text = &quot;我是${name}&quot; // 拼接字符串,还可以是函数的返回值
+val text = &quot;&quot;&quot;
+        我的第一行
+        我是第二行
+        我是第三行
+    &quot;&quot;&quot;.trimIndent() // 多行字符串
+</code></pre>
+<h2>when</h2>
+<p>switch的高级版，分支条件支持表达式</p>
+<pre><code class="language-kotlin">var num = 21
+when (num) {
+    in 1..10 -&gt; println(&quot;小于10&quot;)
+    in 11..20 -&gt; println(&quot;小于20&quot;)
+    in 21..30 -&gt; println(&quot;小于30&quot;)
+    else -&gt; println(&quot;未知&quot;)
+}
+</code></pre>
+<h2>各种声明</h2>
+<pre><code class="language-kotlin">// 抽象类
+abstract class className{...}
+// 接口
+interface className{...}
+// 注解
+annotation class className{...}
+// 枚举
+enmu class className{...}
+// 数据类
+data class className{...}
+</code></pre>
+<h2>编译期常量</h2>
+<p>在静态变量上加上<code>const</code>关键字</p>
+<pre><code class="language-kotlin">companion object {
+    const val GOOGLE_URL = &quot;https://www.google.com/&quot;;
+}
+</code></pre>
+<h2>内部类</h2>
+<pre><code class="language-kotlin">class outer{
+    // 默认静态内部类
+    class inner1{
+        
+    }
+    // 嵌套内部类
+    inner class inner2{
+        
+    }
+}
+</code></pre>
+<h2><code>internal</code></h2>
+<p>当前模块可见</p>
+<h2><code>open</code>和<code>final</code></h2>
+<p>在kotiln中，类和函数默认是被<code>final</code>修饰的（除了<code>abstract</code>和<code>override</code>外）</p>
+<p>而使用open来修饰，就表示可以继承</p>
+<h2>主构造器和<code>init</code></h2>
+<pre><code class="language-kotlin">class Activity constructor(name: String?) {
+    private var name: String? = null
+
+    init { // init是初始化代码块
+        this.name = name
+    }
+}
+</code></pre>
+<p>更简洁的写法：</p>
+<pre><code class="language-kotlin">class Activity constructor(var name: String?) {
+    // 在构造的时候就定义变量
+}
+</code></pre>
+<h2><code>==</code>和<code>===</code></h2>
+<ul>
+<li><code>==</code>调用<code>equals()</code>进行比较</li>
+<li><code>===</code>比较引用地址</li>
+</ul>
+<h2><code>?:</code></h2>
+<p>在kotiln中，这是一个用于简化<code>if null</code>的操作符</p>
+<pre><code class="language-kotlin">name?:&quot;令狐冲&quot; // 如果name是null的话，则赋值为&quot;令狐冲&quot;
+</code></pre>
+<h2>扩展函数</h2>
+<p>可以如此使用：</p>
+<pre><code class="language-kotlin">fun main() {
+    var text = &quot;乌拉&quot;
+    println(text.msg())
+}
+
+fun String.msg(): String {
+    return &quot;====&gt; $this&quot;
+}
+
+</code></pre>
+<h2>委托</h2>
+<pre><code class="language-kotlin">val name: String by lazy {&quot;萧峰&quot;} // 延迟，语句只在第一次访问时执行
+</code></pre>
+<h2><code>internal</code></h2>
+<p>相同模块可见</p>
+<h2>协程</h2>
+<p>是一套由Kotlin官方提供的线程API，优势在于可以把不同线程的代码写在同一代码块</p>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

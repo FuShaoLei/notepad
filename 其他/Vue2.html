@@ -1,0 +1,618 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>Vue2</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            Vue2
+        </div>
+        <div class="article-wrapper">
+            <p>文档参考：https://v2.cn.vuejs.org/v2/guide/</p>
+<p>DOM：文档对象。javascript可以通过<code>document.querySelectorAll(&quot;p&quot;)</code>这样的语句去访问</p>
+<h2>生命周期钩子函数</h2>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beforeCreated</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>beforeMount</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>mounted</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>beforeUpdate</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>beforeDestroy</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>destroy</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>常用实例方法</h2>
+<p>全部方法参考：https://v2.cn.vuejs.org/v2/api/#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95-%E4%BA%8B%E4%BB%B6</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vm.$emit( eventName, […args] )</code></td>
+<td>触发当前实例上的事件。附加参数都会传给监听器回调。</td>
+</tr>
+<tr>
+<td><code>vm.$forceUpdate()</code></td>
+<td>迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。</td>
+</tr>
+<tr>
+<td><code>vm.$nextTick( [callback] )</code></td>
+<td>将回调延迟到下次 DOM 更新循环之后执行。</td>
+</tr>
+</tbody>
+</table>
+<h2>其他知识点</h2>
+<h4>Event：preventDefault() 方法</h4>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event"><code>Event</code></a> 接口的 <strong><code>preventDefault()</code></strong> 方法，告诉用户代理：如果此事件没有被显式处理，它默认的动作也不应该照常执行。比如：你有一个链接，点击该链接时，不希望它导航到其他页面，而是执行某些 JavaScript 代码。</p>
+<p>在vue中可以这样使用：例如，<code>.prevent</code> 修饰符告诉 <code>v-on</code> 指令对于触发的事件调用 <code>event.preventDefault()</code>：</p>
+<pre><code>&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;...&lt;/form&gt;
+</code></pre>
+<h4>v-html</h4>
+<p>插入原始的HTML：</p>
+<pre><code>&lt;span v-html=&quot;rawHtml&quot;&gt;&lt;/span&gt;
+</code></pre>
+<h4>v-on</h4>
+<p>v-on可以添加一个事件的监听器：</p>
+<pre><code>&lt;button v-on:click=&quot;reverseMessage&quot;&gt;反转消息&lt;/button&gt;
+</code></pre>
+<p>可以缩写为：</p>
+<pre><code class="language-vue">&lt;button @click=&quot;reverseMessage&quot;&gt;反转消息&lt;/button&gt;
+
+动态参数
+&lt;button @[event]=&quot;reverseMessage&quot;&gt;反转消息&lt;/button&gt;
+</code></pre>
+<h4>v-bind</h4>
+<pre><code class="language-vue">&lt;!-- 完整语法 --&gt;
+&lt;a v-bind:href=&quot;url&quot;&gt;...&lt;/a&gt;
+
+&lt;!-- 缩写 --&gt;
+&lt;a :href=&quot;url&quot;&gt;...&lt;/a&gt;
+
+&lt;!-- 动态参数的缩写 (2.6.0+) --&gt;
+&lt;a :[key]=&quot;url&quot;&gt; ... &lt;/a&gt;
+</code></pre>
+<h2>计算属性</h2>
+<p>例子：</p>
+<pre><code class="language-vue">&lt;p&gt;原始：{{ testTitle }}&lt;/p&gt;
+&lt;p&gt;反转后的：{{ reverseTitle }}&lt;/p&gt;
+</code></pre>
+<pre><code class="language-js">data() {
+    return {
+        testTitle: 'Hello'
+    }
+},
+computed:{
+        reverseTitle:function (){
+            return this.testTitle.split('').reverse().join('')
+        }
+},
+</code></pre>
+<p>这里我们声明了一个计算属性 <code>reversedMessage</code>。我们提供的函数将用作 property <code>vm.reversedMessage</code> 的 getter 函数：</p>
+<p>与方法相比：计算属性是基于它们的响应式以来进行缓存的，只在相关响应式以来发生改变的时候才会重新求值。</p>
+<p>计算属性也可以拥有setter：</p>
+<pre><code class="language-javascript">computed:{
+    reverseTitle:{
+      get:function (){
+        console.log(&quot;reverseTitle&quot;)
+        return this.testTitle.split('').reverse().join('')
+      },
+      set:function (newTitle){
+        this.testTitle = newTitle
+      }
+    }
+  },
+  methods:{
+    changeSomething() {
+      this.reverseTitle = &quot;World&quot;
+    }
+  }
+</code></pre>
+<h2>侦听器</h2>
+<p>当需要在数据变化时执行<strong>异步</strong>或开销较大的操作时，可以考虑使用侦听器。</p>
+<p>例子：</p>
+<pre><code class="language-js"> watch:{
+    testTitle:function (newVal,oldVal) {
+      console.log(&quot;newVal = &quot;+newVal)
+      console.log(&quot;oldVal = &quot;+oldVal)
+
+      this.watchTitle = 'Hello I Watch !'
+
+    }
+  },
+</code></pre>
+<h2>v-for</h2>
+<p>打印对象：</p>
+<pre><code class="language-js"> students:{
+        name:'张三',
+        sex:'男',
+        score: 100
+      }
+</code></pre>
+<pre><code class="language-html">&lt;ul id=&quot;v-for-object&quot; class=&quot;demo&quot;&gt;
+      &lt;li v-for=&quot;(value,name) in students&quot; :key=&quot;value&quot;&gt;
+        {{name}}: {{ value }}
+      &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h2><code>v-if</code> 和 <code>v-show</code> 的区别</h2>
+<ul>
+<li><code>v-if</code>是当判断为true的时候会渲染</li>
+<li><code>v-show</code>无论有没有判断为true都会渲染</li>
+</ul>
+<h2>回车按键方法</h2>
+<p>对于原生的组件</p>
+<pre><code class="language-html">&lt;input @keyup.enter=&quot;submit&quot; /&gt;
+</code></pre>
+<p>对于element-ui</p>
+<pre><code class="language-html">&lt;el-input @keyup.native.enter=&quot;submit&quot; v-model=&quot;inputTxt&quot;/&gt;
+</code></pre>
+<h2>vue 自定义组件</h2>
+<p>父给子传参数，子给父传参数，例子：</p>
+<p>父vue：</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+
+    &lt;div :style=&quot;{ fontSize: postFontSize + 'em' }&quot;&gt;
+      &lt;ButtonCounter title-name=&quot;You Are The Best.&quot; @increase=&quot;mainIncrease&quot;/&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+
+import router from &quot;@/router&quot;;
+import ButtonCounter from &quot;@/components/ButtonCounter.vue&quot;;
+
+export default {
+  name: 'App',
+  components: {
+    ButtonCounter
+  },
+  data() {
+    return {
+      postFontSize: 1
+    }
+  },
+  methods: {
+   	mainIncrease(...data) {
+      console.log(data)
+      console.log(&quot;Hello I'm mainIncrease&quot;)
+      this.postFontSize = data[0]
+    }
+  }
+}
+&lt;/script&gt;
+
+</code></pre>
+<p>子Vue：</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+
+    {{ titleName}} 请输入字号大小：
+    &lt;el-input-number v-model=&quot;mFontSize&quot; :min=&quot;1&quot;&gt;&lt;/el-input-number&gt;
+    &lt;div&gt;
+      &lt;button @click=&quot;$emit('increase', mFontSize, data)&quot;&gt;改变字号&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  name: &quot;ButtonCounter&quot;,
+  props:{
+    titleName: String,
+  },
+  data() {
+    return {
+      count: 0,
+      mFontSize:1,
+      data:{
+        name:&quot;xiaoming&quot;,
+        age: 15
+      }
+    }
+  },
+}
+&lt;/script&gt;
+</code></pre>
+<p>父向子传参数，使用到 子Vue里的props</p>
+<p>子向父传参数，用到了 $emit('increase', mFontSize) ，然后在父Vue里往@increase设置一个方法，然后在方法中拿到参数去做改变字号的动作</p>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

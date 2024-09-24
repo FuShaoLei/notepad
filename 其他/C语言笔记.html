@@ -1,0 +1,746 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>C语言笔记</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            C语言笔记
+        </div>
+        <div class="article-wrapper">
+            <h1>C语言</h1>
+<blockquote>
+<p>因为想重新学习数据结构，而数据结构要用到的c语言都忘记的差不多了，所以现在重新学过，学习网站：https://www.dotcpp.com/course/c/</p>
+</blockquote>
+<h2>第一个C语言程序</h2>
+<pre><code class="language-c">#include &lt;stdio.h&gt; // 使用#include可引入头文件
+
+int main() { // 每个c程序有且只能有一个main函数，程序将从main函数开始执行
+    int number; // 定义一个int类型，名为number的变量
+    number = 2021; // 将2021赋值给number
+    printf(&quot;Hello %d&quot;, number); // 打印，%d表示输出位置和形式，将输出： Hello 2021
+    return 0;
+}
+</code></pre>
+<ul>
+<li><code>#include</code>是个预处理指令，表示将什么什么引入</li>
+<li>stdio.h是c语言的标准输入输出文件，只有引入了这个文件，才可以使用printf，scanf等函数</li>
+</ul>
+<h2>数据类型</h2>
+<p>数据可分为变量和常量，变量指的是在程序运行时可以改变的量，而常量则是不能改变的量</p>
+<p>各种数据类型：</p>
+<table>
+<thead>
+<tr>
+<th>类型名称</th>
+<th>占字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td>1</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>4</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+</tr>
+<tr>
+<td>unsigned short</td>
+<td>2</td>
+</tr>
+<tr>
+<td>long</td>
+<td>4</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>4</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h2>输入输出</h2>
+<p>putchar-输出单个字符，如<code>putchar('a')</code>，就会输出<code>a</code></p>
+<p>printf-格式化输出，以%d等类似的形式占位</p>
+<table>
+<thead>
+<tr>
+<th>格式字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d , i</td>
+<td>以十进制形式输出有符号整数(正数不输出符号)</td>
+</tr>
+<tr>
+<td>O</td>
+<td>以八进制形式输出无符号整数(不输出前缀0)</td>
+</tr>
+<tr>
+<td>x</td>
+<td>以十六进制形式输出无符号整数(不输出前缀0x)</td>
+</tr>
+<tr>
+<td>U</td>
+<td>以十进制形式输出无符号整数</td>
+</tr>
+<tr>
+<td>f</td>
+<td>以小数形式输出单、双精度类型实数</td>
+</tr>
+<tr>
+<td>e</td>
+<td>以指数形式输出单、双精度实数</td>
+</tr>
+<tr>
+<td>g</td>
+<td>以%f或%e中较短输出宽度的一种格式输出单、双精度实数</td>
+</tr>
+<tr>
+<td>C</td>
+<td>输出单个字符</td>
+</tr>
+<tr>
+<td>S</td>
+<td>输出字符串</td>
+</tr>
+</tbody>
+</table>
+<p>getchar-输入单个字符，这样用：</p>
+<pre><code class="language-c">char c;
+c = getchar();
+</code></pre>
+<p>scanf-输入函数，返回值是成功读入的数量，如此使用：</p>
+<pre><code class="language-c">int num;
+scanf(&quot;%d&quot;,&amp;num); // &amp;是地址运算符
+</code></pre>
+<h2>基本运算符</h2>
+<p>赋值运算符<code>=</code>，表示把右边的东西赋给左边的变量（即可修改的左值）</p>
+<p>单目运算符：</p>
+<p><code>++</code>，<code>--</code>，但在操作数左边时，表示先计算在使用，当在右边时，表示先使用在计算</p>
+<p><code>sizeof</code>求长度运算符</p>
+<p>双目运算符：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>符号</th>
+<th>操作</th>
+<th>用例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加法</td>
+<td>+</td>
+<td>使它两侧的值加到一起</td>
+<td>1+2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>减法</td>
+<td>-</td>
+<td>从它前面的数减去后面的数</td>
+<td>5-3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>乘法</td>
+<td>*</td>
+<td>将它前面的数乘以后面的数</td>
+<td>2*3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>除法</td>
+<td>/</td>
+<td>用它左边的值除以右边的值</td>
+<td>8/3</td>
+<td>2(整数的除法会丢掉小数部分)</td>
+</tr>
+<tr>
+<td>取模</td>
+<td>%</td>
+<td>求用它左边的值除以右边的数后的余数</td>
+<td>5%3</td>
+<td>2(%运算符两侧的操作数必须为整数)</td>
+</tr>
+</tbody>
+</table>
+<p>三目运算符</p>
+<pre><code class="language-c">int a = 5;
+a &gt; 0 ?--a:++a;
+// 最终 a = 4
+</code></pre>
+<h2>程序流</h2>
+<p>选择结构</p>
+<pre><code class="language-c">if(flag&gt;=90) {
+    printf(&quot;Good\n&quot;);
+} else if(flag&gt;=60) {
+    printf(&quot;passed&quot;);
+} else {
+    printf(&quot;failed\n&quot;);
+}
+</code></pre>
+<pre><code class="language-c">switch(value)
+{
+    case 1:printf(&quot;one&quot;);break;
+    case 2:printf(&quot;two&quot;);break;
+    case 3:printf(&quot;three&quot;);break;
+    default:printf(&quot;other&quot;);break;
+}
+</code></pre>
+<p>循环结构</p>
+<pre><code class="language-c">while(i++&lt;10)
+{
+    printf(“count %d ”,i);
+}
+</code></pre>
+<pre><code class="language-c">do
+{
+    printf(&quot;count %d&quot;，i);
+}while(i&lt;20);
+</code></pre>
+<pre><code class="language-c">for(i=0;i&lt;100;i++)
+{
+    printf(&quot;i count is %d\n&quot;,i);
+}
+</code></pre>
+<h2>函数</h2>
+<pre><code class="language-c">// 函数的声明
+int plus(int a, int b);
+// 函数的定义
+int plus(int a, int b) { // int是返回类型，plus是函数名，然后是参数a，b
+    return a + b;
+}
+</code></pre>
+<p>在main函数中使用函数时，应该对被调函数进行声明，目的是 使编译系统知道被调函数<strong>返回值的类型</strong></p>
+<h2>变量的存储类型</h2>
+<p>C 语言中定义了 4 种存储属性,即自动变量、外部变量、静态变量和寄存器变量,它关系到变量在内存中的存放位置, 由此决定了变量的保留时间和变量的作用范围。</p>
+<p>自动变量-auto</p>
+<p>外部变量-extern</p>
+<p>静态变量-static</p>
+<p>寄存器变量-register</p>
+<h2>数组</h2>
+<pre><code class="language-c">int a[100]; // 定义一个int类型，长度为100的一维数组
+int a[100] = {1, 2, 3};// 定义数组，并赋值前三个值，其他没有赋值的会有默认值0
+int a[3][4];// 定义一个int类型，3行，4列的二维数组
+int a[3][4]={{1,2,3,4},{10,20,30,40},{100,200,300,400}};// 定义二维数组，并初始化
+</code></pre>
+<pre><code class="language-c">char c[10]; // 定义一个字符数组
+char c[6]={'c', 'h', 'i', 'n', 'a' , '\0' };// 定义并初始化
+char a[]={&quot;china&quot;};// 也可以这样
+</code></pre>
+<h2>指针</h2>
+<p>c语言的精华所在</p>
+<p>地址：在逻辑内存的编号，地址运算符<code>&amp;</code>得到变量的地址</p>
+<p>指针：指针也是一个变量，不过<strong>存储的是地址</strong></p>
+<pre><code class="language-c">int *p;// 定义一个指向int类型，名字为p的指针变量，即用int *来定义了一个指针
+int a = 199;
+p = &amp;a; // 将a的地址赋给p
+printf(&quot;%d&quot;, *p); // 输出199，这里的*号是可以获取地址上对应的值
+</code></pre>
+<p><strong>这里要理解好<code>*</code>号的作用，它可以用来定义指针，也可以用来获取地址上对应的值</strong>，另外，因为指针变量存储的只能是地址，所以只能将地址赋给指针变量，其他的不行</p>
+<p>数组指针：</p>
+<pre><code class="language-c">int arr[5] = {1, 2, 3, 4, 5};
+int *p = arr; // 定义一个指针变量，然后将arr数组的地址赋给其，此时p存储的时第一个值的地址
+printf(&quot;arr[1] = %d,arr[1] = %d&quot;, *(p + 1), p[1]);// 可以通过这两种方式来访问数组元素
+</code></pre>
+<p>字符串指针</p>
+<pre><code class="language-c">int *str = &quot;Welcome to China&quot;;
+str[0] = 'c'; // 报错
+</code></pre>
+<p>字符串指针不能改变值，字符串数组可以</p>
+<h2>结构体</h2>
+<pre><code class="language-c">// 定义一个结构体
+struct Student {
+    char name[255];
+    int score;
+};
+</code></pre>
+<pre><code class="language-c">// 共用体，这是个啥我勒宝贝
+union INFO {
+        int a;
+        int b;
+        int c;
+};
+</code></pre>
+<pre><code class="language-c">// 使用typedef定义类型
+typedef int INTEGER; // 这样定义后就可以通过 INTEGER name来定义一个int类型的变量了
+// 给结构体重命名，这样就可以通过INFO name来定义一个结构体了
+typedef struct _INFO
+{
+    int num;
+    char str[256];
+}INFO;
+</code></pre>
+<h2>文件读写</h2>
+<pre><code class="language-c">FILE *fp;
+fp = fopen(&quot;E:\\text.txt&quot;, &quot;r+&quot;); // 以读写的方式打开文件
+fprintf(fp, &quot;%s&quot;, &quot;great work&quot;);// 写入文件
+char str[100];
+fscanf(fp, &quot;%s&quot;, str); // 读取文件,并将其赋值给str
+</code></pre>
+<p>操作参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>以只读方式打开文件，该文件必须存在。</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>以读/写方式打开文件，该文件必须存在。</td>
+</tr>
+<tr>
+<td>rb+</td>
+<td>以读/写方式打开一个二进制文件，只允许读/写数据。</td>
+</tr>
+<tr>
+<td>rt+</td>
+<td>以读/写方式打开一个文本文件，允许读和写。</td>
+</tr>
+<tr>
+<td>w</td>
+<td>打开只写文件，若文件存在则文件长度清为零，即该文件内容会消失；若文件不存在则创建该文件。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>打开可读/写文件，若文件存在则文件长度清为零，即该文件内容会消失；若文件不存在则创建该文件。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>以附加的方式打开只写文件。若文件不存在，则会创建该文件；如果文件存在，则写入的数据会被加到文件尾后，即文件原先的内容会被保留（EOF 符保留）。</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>以附加方式打开可读/写的文件。若文件不存在，则会创建该文件，如果文件存在，则写入的数据会被加到文件尾后，即文件原先的内容会被保留（EOF符不保留）。</td>
+</tr>
+<tr>
+<td>wb</td>
+<td>以只写方式打开或新建一个二进制文件，只允许写数据。</td>
+</tr>
+<tr>
+<td>wb+</td>
+<td>以读/写方式打开或新建一个二进制文件，允许读和写。</td>
+</tr>
+<tr>
+<td>wt+</td>
+<td>以读/写方式打开或新建一个文本文件，允许读和写。</td>
+</tr>
+<tr>
+<td>at+</td>
+<td>以读/写方式打开一个文本文件，允许读或在文本末追加数据。</td>
+</tr>
+<tr>
+<td>ab+</td>
+<td>以读/写方式打开一个二进制文件，允许读或在文件末追加数据。</td>
+</tr>
+</tbody>
+</table>
+<h2>宏定义</h2>
+<p>宏定义是预处理命令</p>
+<pre><code class="language-c">#define ZERO 0
+#define MAX(a, b) (a&gt;b)?a:b // 还可以带有参数
+</code></pre>
+<h2>条件编译</h2>
+<pre><code class="language-c">#ifndef XX_H // 如果没有定义过什么，则执行
+// 。。。 
+##endif 
+</code></pre>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

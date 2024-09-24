@@ -1,0 +1,590 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>JavaScript Note</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            JavaScript Note
+        </div>
+        <div class="article-wrapper">
+            <h2>类型</h2>
+<ul>
+<li>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a>（数字）</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a>（字符串）</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a>（布尔）</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a>（符号）（ES2015 新增）</p>
+</li>
+<li>
+<p><code>Object</code></p>
+<p>（对象）</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a>（函数）</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a>（数组）</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a>（日期）</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp"><code>RegExp</code></a>（正则表达式）</li>
+</ul>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/null"><code>null</code></a>（空）</p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>（未定义）</p>
+</li>
+</ul>
+<h3>数字</h3>
+<p>可以使用<code>isNaN()</code>去判断一个变量是否为NaN，NaN与任何数字进行数学运算，结果都会是NaN</p>
+<pre><code class="language-javascript">var a = 55;
+isNaN(a); // false
+</code></pre>
+<p>两个特殊值</p>
+<ul>
+<li><code>Infinity</code>正无穷</li>
+<li><code>-Infinity</code> 负无穷</li>
+</ul>
+<p>可以用<code>isFinite()</code>来判断一个变量是否是一个有穷数</p>
+<h3>字符串</h3>
+<pre><code class="language-javascript">&quot;hello&quot;.length; // 5
+&quot;hello&quot;.charAt(0); // &quot;h&quot;
+&quot;hello, world&quot;.replace(&quot;world&quot;, &quot;mars&quot;); // &quot;hello, mars&quot;
+&quot;hello&quot;.toUpperCase(); // &quot;HELLO&quot;
+</code></pre>
+<h2>布尔值</h2>
+<ol>
+<li><code>false</code>、<code>0</code>、空字符串（<code>&quot;&quot;</code>）、<code>NaN</code>、<code>null</code> 和 <code>undefined</code> 被转换为 <code>false</code></li>
+<li>所有其他值被转换为 <code>true</code></li>
+</ol>
+<p>也可以使用 <code>Boolean()</code> 函数进行显式转换：</p>
+<pre><code class="language-javascript">Boolean(&quot;&quot;); // false
+Boolean(234); // true
+</code></pre>
+<h2>变量</h2>
+<p>声明变量的关键字：</p>
+<ul>
+<li><code>let</code>：声明一个块级作用域的变了</li>
+<li><code>const</code>：声明一个不可变的变量，在定义域内总是可见的（待验证）</li>
+<li><code>var</code>：在整个函数都是可见的（无论是在声明语句前还是声明语句后），而且是可变的</li>
+</ul>
+<h2>相等预算符</h2>
+<ul>
+<li><code>==</code>：自动转换类型的比较，比如<code>123 == &quot;123&quot;</code>是<code>true</code></li>
+<li><code>===</code>：不自动转换类型的比较，比如<code>123 == &quot;123&quot;</code>是<code>false</code></li>
+</ul>
+<h2>对象</h2>
+<pre><code class="language-javascript">function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// 定义一个对象
+var You = new Person(&quot;You&quot;, 24);
+// 我们创建了一个新的 Person，名称是 &quot;You&quot;
+// (&quot;You&quot; 是第一个参数，24 是第二个参数..)
+// 进行访问的方法：
+// 1.点表示法 (dot notation)
+obj.name = &quot;Simon&quot;;
+var name = obj.name;
+// 2.括号表示法 (bracket notation)
+obj[&quot;name&quot;] = &quot;Simon&quot;;
+var name = obj[&quot;name&quot;];
+// can use a variable to define a key
+var user = prompt(&quot;what is your key?&quot;);
+obj[user] = prompt(&quot;what is its value?&quot;);
+
+</code></pre>
+<h2>数组</h2>
+<p>声明数组：</p>
+<pre><code class="language-javascript">// 法1
+var a = new Array();
+a[0] = &quot;dog&quot;;
+a[1] = &quot;cat&quot;;
+a[2] = &quot;hen&quot;;
+
+// 法2
+var a = [&quot;dog&quot;, &quot;cat&quot;, &quot;hen&quot;];
+</code></pre>
+<p>数组的长度是比数组最大索引值多一的数。</p>
+<p>数组循环：</p>
+<ul>
+<li><code>for...of</code>：遍历元素</li>
+<li><code>for...in</code>：便利数组索引</li>
+</ul>
+<p>数组的一些方法：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>a.toString()</code></td>
+<td align="left">返回一个包含数组中所有元素的字符串，每个元素通过逗号分隔。</td>
+</tr>
+<tr>
+<td align="left"><code>a.toLocaleString()</code></td>
+<td align="left">根据宿主环境的区域设置，返回一个包含数组中所有元素的字符串，每个元素通过逗号分隔。</td>
+</tr>
+<tr>
+<td align="left"><code>a.concat(item1[, item2[, ...[, itemN]]])</code></td>
+<td align="left">返回一个数组，这个数组包含原先 <code>a</code> 和 <code>item1、item2、……、itemN</code> 中的所有元素。</td>
+</tr>
+<tr>
+<td align="left"><code>a.join(sep)</code></td>
+<td align="left">返回一个包含数组中所有元素的字符串，每个元素通过指定的 <code>sep</code> 分隔。</td>
+</tr>
+<tr>
+<td align="left"><code>a.pop()</code></td>
+<td align="left">删除并返回数组中的最后一个元素。</td>
+</tr>
+<tr>
+<td align="left"><code>a.push(item1, ..., itemN)</code></td>
+<td align="left">将 <code>item1、item2、……、itemN</code> 追加至数组 <code>a</code>。</td>
+</tr>
+<tr>
+<td align="left"><code>a.reverse()</code></td>
+<td align="left">数组逆序（会更改原数组 <code>a</code>）。</td>
+</tr>
+<tr>
+<td align="left"><code>a.shift()</code></td>
+<td align="left">删除并返回数组中第一个元素。</td>
+</tr>
+<tr>
+<td align="left"><code>a.slice(start, end)</code></td>
+<td align="left">返回子数组，以 <code>a[start]</code> 开头，以 <code>a[end]</code> 前一个元素结尾。</td>
+</tr>
+<tr>
+<td align="left"><code>a.sort([cmpfn])</code></td>
+<td align="left">依据可选的比较函数 <code>cmpfn</code> 进行排序，如果未指定比较函数，则按字符顺序比较（即使被比较元素是数字）。</td>
+</tr>
+<tr>
+<td align="left"><code>a.splice(start, delcount[, item1[, ...[, itemN]]])</code></td>
+<td align="left">从 <code>start</code> 开始，删除 <code>delcount</code> 个元素，然后插入所有的 <code>item</code>。</td>
+</tr>
+<tr>
+<td align="left"><code>a.unshift(item1[, item2[, ...[, itemN]]])</code></td>
+<td align="left">将 <code>item</code> 插入数组头部，返回数组新长度（考虑 <code>undefined</code>）。</td>
+</tr>
+</tbody>
+</table>
+<h2>函数</h2>
+<p>数实际上是访问了函数体中一个名为 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments"><code>arguments</code></a> 的内部对象，这个对象就如同一个类似于数组的对象一样，包括了所有被传入的参数。</p>
+<pre><code class="language-javascript">function add() {
+  var sum = 0;
+  for (var i = 0, j = arguments.length; i &lt; j; i++) {
+    sum += arguments[i];
+  }
+  return sum;
+}
+
+add(2, 3, 4, 5); // 你可以传入任意个参数
+</code></pre>
+<h2>自定义对象</h2>
+<p>JavaScript中把函数用作类</p>
+<pre><code class="language-javascript">function makePerson(first, last) {
+  return {
+    first: first,
+    last: last,
+    fullName: function () {
+      return this.first + &quot; &quot; + this.last;
+    },
+    fullNameReversed: function () {
+      return this.last + &quot;, &quot; + this.first;
+    },
+  };
+}
+var s = makePerson(&quot;Simon&quot;, &quot;Willison&quot;);
+s.fullName(); // &quot;Simon Willison&quot;
+s.fullNameReversed(); // Willison, Simon
+fullName(); // undefined undefined
+
+
+</code></pre>
+<p>这里的<code>this</code>指向的是当前调用的对象，也就是<code>s</code></p>
+<p>如果没有通过<code>.</code>去调用，则指向的是全局对象</p>
+<pre><code class="language-javascript">function Person(first, last) {
+  this.first = first;
+  this.last = last;
+  this.fullName = function () {
+    return this.first + &quot; &quot; + this.last;
+  };
+  this.fullNameReversed = function () {
+    return this.last + &quot;, &quot; + this.first;
+  };
+}
+var s = new Person(&quot;Simon&quot;, &quot;Willison&quot;);
+</code></pre>
+<blockquote>
+<p>我们引入了另外一个关键字：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new"><code>new</code></a>，它和 <code>this</code> 密切相关。它的作用是创建一个崭新的空对象，然后使用指向那个对象的 <code>this</code> 调用特定的函数。注意，含有 <code>this</code> 的特定函数不会返回任何值，只会修改 <code>this</code> 对象本身。<code>new</code> 关键字将生成的 <code>this</code> 对象返回给调用方，而被 <code>new</code> 调用的函数称为构造函数。</p>
+</blockquote>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

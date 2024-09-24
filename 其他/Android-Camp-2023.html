@@ -1,0 +1,600 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>Android-Camp-2023</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            Android-Camp-2023
+        </div>
+        <div class="article-wrapper">
+            <h2>Section2：DataBinding</h2>
+<p>使用DataBinding</p>
+<ol>
+<li>
+<p>在app的<code>build.gradle</code>文件中，添加</p>
+<pre><code>    buildFeatures {
+        dataBinding = true
+    }
+</code></pre>
+</li>
+<li>
+<p><code>.xml</code>文件使用layout tag进行包裹，包括namespace要放在最外层</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
+
+    &lt;androidx.constraintlayout.widget.ConstraintLayout
+        android:id=&quot;@+id/name_text&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        tools:context=&quot;.MainActivity&quot;&gt;
+
+        &lt;TextView
+            android:id=&quot;@+id/greeting_text_view&quot;
+                  ..../&gt;
+
+        &lt;EditText
+            android:id=&quot;@+id/name_edit_text&quot;
+                  ..../&gt;
+
+        &lt;Button
+            android:id=&quot;@+id/submit_button&quot;
+                ..../&gt;
+
+    &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+&lt;/layout&gt;
+</code></pre>
+</li>
+<li>
+<p>在Activity中，使用<code>DataBindingUtil.setContentView</code></p>
+<pre><code class="language-kotlin">class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding // ActivityMainBinding是根据xml文件名自动生成的
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        // 现在，可以不使用findviewbyid，直接binding.greetingTextView去使用
+    }
+}
+</code></pre>
+</li>
+</ol>
+<p>使用对象：</p>
+<p>在<code>.xml</code>文件中</p>
+<pre><code class="language-xml">    
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
+
+    &lt;data&gt;
+
+        &lt;variable
+            name=&quot;student&quot;
+            type=&quot;com.xx.Student&quot; /&gt;
+    &lt;/data&gt;
+
+    &lt;androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        tools:context=&quot;.MainActivity&quot;&gt;
+
+
+        &lt;TextView
+            android:id=&quot;@+id/control_button&quot;
+            android:text=&quot;@{student.name}&quot;/&gt;
+    &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+&lt;/layout&gt;
+
+</code></pre>
+<p>然后在activity中可以使用binding.setStudent来设置对象</p>
+<h2>Section3: ViewModel</h2>
+<p>为了保持状态</p>
+<p>简单使用</p>
+<ol>
+<li>
+<p>添加依赖</p>
+<pre><code class="language-java">    def lifecycle_version = &quot;2.5.1&quot;
+    // ViewModel
+    implementation &quot;androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version&quot;
+    // LiveData
+    implementation &quot;androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version&quot;
+    // 具体去https://developer.android.com/jetpack/androidx/releases/lifecycle查看最新版本
+</code></pre>
+</li>
+<li>
+<p>继承ViewModel</p>
+<pre><code class="language-kotlin">class MainActivityViewModel : ViewModel() {
+
+    private var count = 0
+
+    fun getCurrentCount(): Int {
+        return count
+    }
+
+    fun getUpdateCount(): Int {
+        return ++count
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>在Activity中使用</p>
+<pre><code class="language-kotlin">var viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+binding.countText.text = viewModel.getCurrentCount().toString()
+binding.button.setOnClickListener {
+    binding.countText.text = viewModel.getUpdateCount().toString()
+}
+</code></pre>
+</li>
+</ol>
+<p>如果想要向viewmodel传递参数，则要使用到另外的方法</p>
+<pre><code class="language-kotlin">class MainActivityViewModelFactory(private val startingTotal: Int) : ViewModelProvider.Factory {
+
+    override fun &lt;T : ViewModel&gt; create(modelClass: Class&lt;T&gt;): T {
+        if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)) {
+            return MainActivityViewModel(startingTotal) as T
+        }
+        throw IllegalAccessException(&quot;Unknown View Model Class&quot;)
+    }
+}
+</code></pre>
+<pre><code class="language-kotlin">class MainActivityViewModel(startingTotal:Int) : ViewModel() {
+    private var total = 0
+
+    init {
+        total = startingTotal
+    }
+
+    fun getTotal():Int{
+        return total
+    }
+
+    fun setTotal(input:Int){
+        total +=input
+    }
+}
+</code></pre>
+<pre><code class="language-kotlin">
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModelFactory: MainActivityViewModelFactory
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModelFactory = MainActivityViewModelFactory(123)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
+        binding.resultTextView.text = viewModel.getTotal().toString()
+
+        binding.insertButton.setOnClickListener {
+            viewModel.setTotal(binding.inputEditText.text.toString().toInt())
+            binding.resultTextView.text = viewModel.getTotal().toString()
+
+        }
+    }
+}
+</code></pre>
+<h2>Section4：Live Data</h2>
+<p>LiveData is a lifecycle-aware observable data holder class.</p>
+<p>LiveData vs MutableLiveData</p>
+<ul>
+<li>Data in LiveData object are only readable,not editable</li>
+<li>A MutableLiveData object allows us to change/udpate its data</li>
+</ul>
+<p>简单使用:</p>
+<ol>
+<li>
+<p>定义</p>
+<pre><code class="language-kotlin">class MainActivityViewModel : ViewModel() {
+    var count = MutableLiveData&lt;Int&gt;()
+
+    init {
+        count.value = 0
+    }
+
+    fun updatedCount() {
+        count.value = count.value?.plus(1)
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>监听</p>
+<pre><code class="language-kotlin">class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainActivityViewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
+        viewModel.count.observe(this) {
+            binding.countText.text = it.toString()
+        }
+
+        binding.button.setOnClickListener {
+            viewModel.updatedCount()
+        }
+    }
+}
+</code></pre>
+</li>
+</ol>
+<p>LiveData的两种更新数据方式的区别</p>
+<ul>
+<li>setValue：只能在主线程中进行</li>
+<li>postValue：在任何线程中都可以</li>
+</ul>
+<h2>Section5: ViewModel &amp; LiveData and DataBinding</h2>
+<p>这节讲的其实是双向绑定</p>
+<p>想要在<code>xml</code>文件中使用LiveData，要在Activity中设置</p>
+<pre><code class="language-kotlin">binding.lifecycleOwner = this
+</code></pre>
+<h2>Section6: Activity And Fragment Lifecycles</h2>
+<p>这章主要讲Activty和Fragment的生命周期，比较基本</p>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

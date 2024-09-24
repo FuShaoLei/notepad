@@ -1,0 +1,674 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>Vue3</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            Vue3
+        </div>
+        <div class="article-wrapper">
+            <h1>Vue3</h1>
+<p>参考：<a href="https://cn.vuejs.org/guide/introduction.html">vue官方文档</a></p>
+<h2>声明为响应式</h2>
+<p>声明为响应式才能实时的响应</p>
+<pre><code class="language-js">import {ref} from &quot;vue&quot;;
+const count = ref(0)
+</code></pre>
+<pre><code class="language-vue">&lt;button @click=&quot;()=&gt;{count++}&quot;&gt;Click Number is {{ count }}&lt;/button&gt;
+</code></pre>
+<p>这么做之后，在script中要访问count的值，要在其后加上<code>.value</code>：</p>
+<pre><code class="language-js">console.log(&quot;count = &quot;+count.value)
+</code></pre>
+<h2>侦听器</h2>
+<h3>watch()</h3>
+<pre><code class="language-js">// 侦听单个来源
+function watch&lt;T&gt;(
+  source: WatchSource&lt;T&gt;,
+  callback: WatchCallback&lt;T&gt;,
+  options?: WatchOptions
+): StopHandle
+
+// 侦听多个来源
+function watch&lt;T&gt;(
+  sources: WatchSource&lt;T&gt;[],
+  callback: WatchCallback&lt;T[]&gt;,
+  options?: WatchOptions
+): StopHandle
+</code></pre>
+<p>watch默认是懒执行</p>
+<ul>
+<li>第一个参数：
+<ul>
+<li>可以是一个月返回值的函数</li>
+<li>一个ref</li>
+<li>一个响应式对象</li>
+<li>由以上组合成的数组</li>
+</ul>
+</li>
+<li>回调函数，（新值，旧值）</li>
+<li>一个对象，有以下字段
+<ul>
+<li><code>deep: true</code>  表示深层侦听，如果源是对象，会对其强制深度便利，以便在深层级变更时触发回调</li>
+<li><code>immediate: true</code> 创建侦听器时，立即执行一遍，且当源变化的时候会再次执行</li>
+<li><code>once: true</code> 源变化的时候触发一次，就结束了，此后不再触发</li>
+<li><code>flush: 'post'</code>  在侦听器回调中能访问被<code>Vue</code>更新之后的所属组件的 Dom，需要这么指明（不太明白啥意思</li>
+<li><code>flush: 'sync'</code> 会在 Vue 进行任何更新之前触发</li>
+</ul>
+</li>
+</ul>
+<h3>watchEffect()</h3>
+<p>立即运行一个函数，同时响应式地追踪其以来，并在依赖更改时重新执行</p>
+<pre><code class="language-js">watchEffect(async () =&gt; {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  )
+  data.value = await response.json()
+})
+</code></pre>
+<h2>自定义组件</h2>
+<p>子Vue</p>
+<pre><code class="language-html">&lt;script setup&gt;
+// 定义props
+const props = defineProps({
+  blog: {
+    type: Object,
+    required: true // 是否是必要的
+  }
+})
+
+// 定义emit
+const emit = defineEmits(['confirm'])
+function confirmReadMore() {
+  emit('confirm', &quot;you click blog title = &quot; + props.blog.title)
+}
+
+// 操作slot
+import { useSlots } from 'vue'
+
+const slots = useSlots()
+
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div class=&quot;blog-wrapper&quot;&gt;
+    &lt;h3&gt; {{ blog.title }}&lt;/h3&gt;
+    &lt;div&gt;作者：{{ blog.author }}&lt;/div&gt;
+    &lt;p&gt;{{ blog.content }}&lt;/p&gt;
+
+    &lt;!--默认插槽--&gt;
+    &lt;div v-if=&quot;$slots.default()&quot; style=&quot;background: #f3f4f5&quot;&gt;
+      &lt;slot&gt;&lt;/slot&gt;  &lt;!--默认name就是default--&gt;
+    &lt;/div&gt;
+
+    &lt;!--具名插槽--&gt;
+    &lt;div v-if=&quot;$slots.input&quot; style=&quot;background: #333; color: #fff&quot;&gt;
+      &lt;slot name=&quot;input&quot;&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+
+    &lt;button @click=&quot;confirmReadMore()&quot;&gt;查看更多&lt;/button&gt;
+    &lt;hr&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>父Vue</p>
+<pre><code class="language-html">&lt;script setup&gt;
+import {ref} from &quot;vue&quot;;
+import BlogItem from &quot;@/components/BlogItem.vue&quot;;
+
+const BlogData = ref([
+  {
+    id: 1,
+    author: &quot;John Doe 1&quot;,
+    title: &quot;title 1&quot;,
+    content: &quot;Lorem Ipsum 1&quot;,
+  },
+  {
+    id: 2,
+    author: &quot;John Doe 2&quot;,
+    title: &quot;title 2&quot;,
+    content: &quot;Lorem Ipsum 2&quot;,
+  }
+])
+
+function handleConfirm(data) {
+  console.log(data)
+  alert(data)
+}
+
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;main&gt;
+
+    &lt;div v-for=&quot;blog in BlogData&quot; :key=&quot;blog.id&quot;&gt;
+      &lt;blog-item :blog=&quot;blog&quot; @confirm=&quot;handleConfirm&quot;&gt;
+        &lt;template #default&gt;
+          crazy {{ blog.id }}
+        &lt;/template&gt;
+        &lt;template #input&gt;
+          special {{ blog.id }}
+        &lt;/template&gt;
+      &lt;/blog-item&gt;
+    &lt;/div&gt;
+
+  &lt;/main&gt;
+&lt;/template&gt;
+
+</code></pre>
+<h2>组合式函数</h2>
+<p>将一些通用的方法封装在js文件里</p>
+<pre><code class="language-js">import {ref, onMounted, onUnmounted} from 'vue'
+export function useMouse() {
+    const x = ref(0)
+    const y = ref(0)
+
+
+    function update(event) {
+        x.value = event.pageX
+        y.value = event.pageY
+    }
+
+
+    onMounted(() =&gt; window.addEventListener('mousemove', update))
+    onUnmounted(() =&gt; window.removeEventListener('mousemove', update))
+
+    return {x, y}
+}
+</code></pre>
+<p>然后可以在各个地方去复用</p>
+<pre><code class="language-html">&lt;script setup&gt;
+import {useMouse} from &quot;@/mouse.js&quot;;
+
+const {x, y} = useMouse()
+
+&lt;/script&gt;
+
+&lt;template&gt;Mouse position is at: {{ x }}, {{ y }}&lt;/template&gt;
+</code></pre>
+<h2>依赖注入（解决深层嵌套的子view的数据传输问题）</h2>
+<p>App.vue</p>
+<pre><code class="language-html">&lt;script setup&gt;
+import {provide, ref} from &quot;vue&quot;;
+import Child from &quot;@/components/Child.vue&quot;;
+
+const inputMsg = ref(&quot;世界&quot;)
+provide('msg', inputMsg)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;input v-model=&quot;inputMsg&quot;/&gt;
+  &lt;Child/&gt;
+&lt;/template&gt;
+</code></pre>
+<p>Child.vue</p>
+<pre><code class="language-html">&lt;script setup&gt;
+import GrandChild from &quot;@/components/GrandChild.vue&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;GrandChild/&gt;
+&lt;/template&gt;
+</code></pre>
+<p>GrandChild.vue</p>
+<pre><code class="language-html">&lt;script setup&gt;
+import {inject} from &quot;vue&quot;;
+
+const msg = inject(&quot;msg&quot;, &quot;World&quot;) // 可以设定默认值
+&lt;/script&gt;
+
+&lt;template&gt;
+
+  &lt;div&gt;
+    Hello {{ msg }}
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>就这样，主view就可以把数据和孙子view组件（深层嵌套的view组件）同步起来了</p>
+<hr />
+<p>一些库的使用</p>
+<h2>Piana</h2>
+<p><a href="https://pinia.vuejs.org/zh/">官方文档</a></p>
+<p>一个存储库</p>
+<p>简单示例</p>
+<pre><code class="language-js">import { defineStore } from 'pinia'
+
+
+export const useBlogsStore = defineStore('blogs', {
+    state:()=&gt;{
+        return{
+            monkey: &quot;-----&quot;,
+            blogs:[
+                {
+                    id: 1,
+                    author: &quot;John Doe 1 ~&quot;,
+                    title: &quot;title 1&quot;,
+                    content: &quot;Lorem Ipsum 1&quot;,
+                },
+                {
+                    id: 2,
+                    author: &quot;John Doe 2 *&quot;,
+                    title: &quot;title 2&quot;,
+                    content: &quot;Lorem Ipsum 2&quot;,
+                }
+            ]
+        }
+    },
+    actions:{
+        setMonkeys(mMonkey){
+            this.monkey = mMonkey
+        }
+    }
+})
+</code></pre>
+<p>使用：</p>
+<pre><code class="language-js">import {useBlogsStore} from &quot;@/stores/blogs.js&quot;;
+
+const mUseBlogsStore = useBlogsStore()
+const jump = ()=&gt;{
+  mUseBlogsStore.setMonkeys(&quot;12344567&quot;)
+}
+</code></pre>
+<h2>Axios 的简单使用</h2>
+<pre><code class="language-js">axios({
+    url:'/api',
+    method:'get'
+  }).then(response=&gt;{
+    console.log(response)
+  })
+</code></pre>
+<p>就这么简答</p>
+<p>不过axios不允许跨域请求，按照下面这么做才能运行跨域请求：</p>
+<p>在vue.config.js里：</p>
+<pre><code class="language-js">import {fileURLToPath, URL} from 'node:url'
+
+import {defineConfig} from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    plugins: [
+        vue(),
+    ],
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        }
+    },
+    server: {
+        proxy: {
+            '/api': {
+                target: 'https://www.runoob.com/try/ajax',  //你要跨域访问的网址
+                changeOrigin: true,   // 允许跨域
+                rewrite: (path) =&gt; path.replace(/^\/api/, '') // 重写路径把路径变成空字符
+            }
+        }
+    }
+})
+
+</code></pre>
+<p>主要代码是proxy那一段</p>
+<p>这么做就可以跨域请求啦！</p>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+

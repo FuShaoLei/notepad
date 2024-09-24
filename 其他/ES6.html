@@ -1,0 +1,768 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        :root {
+            --left-with: 300px;
+            --color-bg: #1E1F22;
+            --color-theme-main: #28ABAE;
+            --color-text-main: #bcbcc3;
+            --color-text-secondary: #333437;
+            --color-embellish: #26282E;
+
+            --color-aside-text:rgba(235, 235, 235, .6);
+            --color-divider: rgba(84, 84, 84, .48);
+
+            --font-main: 'Noto Serif SC', serif;
+            --font-code: 'Roboto Mono', monospace;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-text-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-secondary);
+        }
+
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+        }
+
+        body a {
+            color: var(--color-text-main);
+            text-decoration: none;
+        }
+
+        body a:hover {
+            color: var(--color-theme-main);
+        }
+
+        /* 总体框架 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .main-wrapper {
+            width: 1200px;
+        }
+        .leftArea {
+            font-size: .9rem;
+            position: fixed;
+            top: 0;
+            width: var(--left-with);
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid var(--color-divider);
+        }
+
+        .leftArea:hover{
+            overflow: auto;
+        }
+
+        .rightArea {
+            font-size: 1.1rem;
+            margin-left: var(--left-with);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .article-wrapper img {
+            max-width: 100%;
+        }
+
+        .folder-top-wrapper {
+            margin-top: 30px;
+        }
+
+        .folder-name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .article-item {
+            margin: 0;
+        }
+        .article-item a {
+            display: block;
+            padding: 4px 0;
+            color: var(--color-aside-text);
+        }
+        .article-item a:hover{
+            color: var(--color-text-main);
+        }
+        .nav_link.active_link {
+            color: var(--color-theme-main);
+        }
+
+        /* 文章样式 */
+        pre {
+            /*background: var(--color-embellish)!important;*/
+            /*padding: 1em;*/
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: var(--color-embellish);
+            font-family: var(--font-code);
+            font-size: 15px;
+            padding: 0 5px;
+        }
+
+        pre code {
+            border: none;
+            background: none;
+            font-family: var(--font-code);
+            font-size: 15px;
+        }
+
+        pre code::before {
+            content: none;
+        }
+
+        pre code::after {
+            content: none;
+        }
+
+        blockquote {
+            margin: 0;
+        }
+
+        blockquote p {
+            display: contents;
+        }
+
+        blockquote::before {
+            content: '> ';
+            color: var(--color-theme-main);
+            font-weight: 900;
+        }
+
+        .article-wrapper a {
+            color: var(--color-theme-main);
+        }
+        .article-wrapper a::after{
+            content: '↗';
+        }
+        .article-wrapper a:hover{
+            text-decoration: underline;
+        }
+
+        .article-wrapper h1::after{
+            content: '#';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h2::after{
+            content: '##';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper h3::after{
+            content: '###';
+            color: var(--color-theme-main);
+            margin-left: 7px;
+            font-weight: 900;
+        }
+
+        .article-wrapper strong {
+            text-decoration: var(--color-theme-main) wavy underline;
+            /*color: var(--color-theme-main);*/
+        }
+
+        .article-wrapper ul>li {
+            margin: 5px;
+        }
+
+        .article-title {
+            font-weight: 900;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--color-divider);
+            padding-bottom: 30px;
+            margin-bottom: 5px;
+        }
+
+
+    </style>
+    <title>ES6</title>
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;700;900&family=Roboto+Mono&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+<main class="main-wrapper">
+    <aside class="leftArea">
+        <div style="padding: 30px">
+            <div class="article-item">
+                <a href="/notepad/index.html" class="nav_link">index.html</a>
+            </div>
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 其他</div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android-Camp-2023.html" class="nav_link">Android-Camp-2023</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Android玩机.html" class="nav_link">Android玩机</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/C语言笔记.html" class="nav_link">C语言笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/ES6.html" class="nav_link">ES6</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/FreeMarker笔记.html" class="nav_link">FreeMarker笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Git操作.html" class="nav_link">Git操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/JavaScript_Note.html" class="nav_link">JavaScript Note</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java正则.html" class="nav_link">Java正则</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Java注解.html" class="nav_link">Java注解</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Kotlin笔记.html" class="nav_link">Kotlin笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Linux系统的一些操作.html" class="nav_link">Linux系统的一些操作</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Maven项目打Jar包.html" class="nav_link">Maven项目打Jar包</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/POI操作Excel表格.html" class="nav_link">POI操作Excel表格</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue2.html" class="nav_link">Vue2</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/Vue3.html" class="nav_link">Vue3</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/typescript.html" class="nav_link">typescript</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/使用nvm管理node版本.html" class="nav_link">使用nvm管理node版本</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/小程序.html" class="nav_link">小程序</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/昂达主板开启xmp.html" class="nav_link">昂达主板开启xmp</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/其他/装机.html" class="nav_link">装机</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 读书</div>
+            <div class="article-item">
+                <a href="/notepad/读书/Css设计指南.html" class="nav_link">Css设计指南</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《Java核心技术卷Ⅰ》笔记.html" class="nav_link">《Java核心技术卷Ⅰ》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《图解HTTP》笔记.html" class="nav_link">《图解HTTP》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《数据结构》笔记.html" class="nav_link">《数据结构》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《穷爸爸，富爸爸》.html" class="nav_link">《穷爸爸，富爸爸》</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《第一行代码》笔记.html" class="nav_link">《第一行代码》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《计算机网络》笔记.html" class="nav_link">《计算机网络》笔记</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/读书/《软技能》.html" class="nav_link">《软技能》</a>
+            </div>
+            </div>
+
+            <div class="folder-wrapper folder-top-wrapper">
+                <div class="folder-name"> 生活</div>
+            <div class="article-item">
+                <a href="/notepad/生活/Macbook_入门.html" class="nav_link">Macbook 入门</a>
+            </div>
+            <div class="article-item">
+                <a href="/notepad/生活/相机入门.html" class="nav_link">相机入门</a>
+            </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <article class="rightArea flex-center">
+        <div class="article-title">
+            ES6
+        </div>
+        <div class="article-wrapper">
+            <h2>ES6</h2>
+<p>有关链接：</p>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1ay4y1r78B/">课程链接</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/web/JavaScript">MDN JavaScript教程</a></li>
+</ul>
+<h2>1. let 和 const</h2>
+<p>var会造成变量提升：</p>
+<pre><code class="language-js">console.log(a) // undefined
+var a = 2
+</code></pre>
+<p>它不会报错，原理是在实际编译的时候会是按以下进行的：</p>
+<pre><code class="language-js">var a
+console.log(a) // undefined
+a = 2
+</code></pre>
+<p>let也是声明变量，但是没有变量提升</p>
+<pre><code class="language-js">console.log(a) // 报错
+let a = 2
+</code></pre>
+<p>let：</p>
+<ol>
+<li>没有变量提升</li>
+<li>是一个块作用域</li>
+<li>在一个块中不能重复声明</li>
+</ol>
+<p>const</p>
+<ol>
+<li>也没有变量提升</li>
+<li>是一个块作用域</li>
+<li>在同一个块中不能重复声明</li>
+<li>一般用于生成常量，一旦被声明，无法修改这个常量，如果是一个对象的话，可以修改对象里的属性</li>
+</ol>
+<p>在默认情况下使用const，而在变量值需要被修改的情况使用let</p>
+<h2>2. 模板字符串</h2>
+<pre><code class="language-js">let name = &quot;小明&quot;
+let html = `&lt;ul&gt;&lt;li&gt;${name}&lt;/li&gt;&lt;/ul&gt;`
+</code></pre>
+<h2>3. 强大的函数</h2>
+<h4>函数的参数带默认值：</h4>
+<pre><code class="language-js">function add(a = 10, b = 20) {
+  return a + b
+}
+</code></pre>
+<p>甚至可以是一个函数：</p>
+<pre><code class="language-js">function add(a = 10, b = getVal(5)) {
+    return a + b
+}
+
+function getVal(val) {
+    return val + 5
+}
+</code></pre>
+<h4>剩余运算符<code>...key</code>：</h4>
+<pre><code class="language-js">// ES5 写法
+function pick(obj) {
+    let result = Object.create(null)
+    console.log(arguments)
+    for (let i = 1; i &lt; arguments.length; i++) {
+        result[arguments[i]] = obj[arguments[i]]
+    }
+    return result
+}
+</code></pre>
+<pre><code class="language-js">// ES6 写法
+function pick(obj, ...keys) {
+    let result = Object.create(null)
+    for (let i = 0; i &lt; keys.length; i++) {
+        result[keys[i]] = obj[keys[i]]
+    }
+    return result 
+}
+
+let book = {title: 'life', author: 'myself', begin: 'born'}
+let bookData = pick(book, 'author', 'begin')
+console.log(bookData)
+</code></pre>
+<h4>扩展运算符：将一个数组分割，并将各个项作为分离的参数传给函数</h4>
+<pre><code class="language-js">const arr = [10,20,1,50]
+console.log(Math.max(...arr))
+</code></pre>
+<h4>箭头函数： 使用 <code>=&gt;</code> 来定义 <code>function() {}</code>  等于 <code>() =&gt; {}</code></h4>
+<pre><code class="language-js">let add = (a, b) =&gt; {
+    return a + b
+}
+
+let add5 = a =&gt; (a + 5) // 一个参数的时候可以这么简写
+
+let return5 = () =&gt; 5 // 无参数
+
+console.log(add(5, 1)) // 6
+console.log(add5(6)) // 11
+console.log(return5()) // 5
+</code></pre>
+<p>返回对象要这么写：</p>
+<pre><code class="language-js">let getObj = id =&gt; ({id: id, author: 'myself'})
+
+console.log(getObj(123)) // {id: 123, author: 'myself'} 
+</code></pre>
+<p>箭头函数注意点：</p>
+<ol>
+<li>没有this指向，this只能通过查找作用域链来确定</li>
+<li>没有arguments</li>
+<li>不能使用new关键字来实例化对象。（function函数也是一个对象，但是箭头函数不是一个对象，是一个语法糖）</li>
+</ol>
+<pre><code class="language-js">let Person = () =&gt; {
+    return 5
+}
+let p = new Person()
+console.log(p)  // TypeError: Person is not a constructor
+
+
+let Student = function () {
+    return 5
+}
+let s = new Student()
+console.log(s) // Student{}
+</code></pre>
+<h2>4. 解构赋值</h2>
+<p>对赋值预算符的一种扩展</p>
+<h4>对对象解构</h4>
+<pre><code class="language-js">
+let student = {
+    name: '小明',
+    age: '18'
+}
+
+let {name, age} = student
+
+console.log(name) // 小明
+console.log(age) // 18
+
+
+let student2 = {
+    parent: {
+        father: '小明他爸',
+        mother: '小明他妈'
+    },
+    name: '小明',
+    age: '18'
+}
+// 还可以使用剩余运算符，和默认值
+let {parent, money = 0, ...rest} = student2
+console.log(parent) //{father: '小明他爸', mother: '小明他妈'}
+console.log(money) // 0
+console.log(rest) // {name: '小明', age: '18'}
+</code></pre>
+<h4>对数组解构</h4>
+<pre><code class="language-js">let arr = [1, 2, 3]
+
+let [a, b, c] = arr
+console.log(a) // 1
+console.log(b) // 2
+console.log(c) // 31
+</code></pre>
+<h2>5. 扩展的对象功能</h2>
+<pre><code class="language-js">let student3 = {
+    name, // 等价于 name: name
+    age, // 等价于  age: age
+    getName() {
+        return this.name
+    }
+}
+
+console.log(student3.getName()) 
+</code></pre>
+<p>对象可以直接通过中括号去赋值：</p>
+<pre><code class="language-js">const obj = {}
+obj.isShow = true
+obj[&quot;xx&quot;] = &quot;你好&quot;
+const name = 'rbj'
+obj[name+&quot;_aaa&quot;] = &quot;哦豁，无敌&quot;
+obj[&quot;eee&quot;+name] = function (){
+    return &quot;123456789&quot;
+}
+
+console.log(obj) // {isShow: true, xx: '你好', rbj_aaa: '哦豁，无敌', eeerbj: ƒ}
+
+
+// 还可以这么写在一起
+const name = 'rbj'
+const obj = {
+    isShow:true,
+    xx:&quot;你好&quot;,
+    [name+&quot;_aaa&quot;]:&quot;哦豁，无敌&quot;,
+    [&quot;eee&quot;+name]:function (){
+        return &quot;123456789&quot;
+    }
+}
+</code></pre>
+<p>对象的一些方法：</p>
+<pre><code class="language-js">// 对象的比较 Object.is(obj1, obj2) , 其实这个is()和普通的=== 差不多，不过对于两个NaN的比较，还是is()比较准确一些
+console.log(NaN === NaN) // false
+console.log(Object.is(NaN, NaN)) // true
+
+
+// 对象的合并 Object.assign(traget,obj1,obj2,...) 这里应该是浅拷贝
+const newObj = Object.assign({s:9},{a:1},{b:2},{c:3})
+console.log(newObj) // {s: 9, a: 1, b: 2, c: 3}
+</code></pre>
+<h2>6.Symbol</h2>
+<p>标示独一无二的值</p>
+<blockquote>
+<p>最大的用途，用来定义对象的私有属性</p>
+</blockquote>
+<pre><code class="language-js">const s1 = Symbol(&quot;s1&quot;)
+const s2 = Symbol(&quot;s1&quot;)
+
+console.log(s1)
+console.log(Object.is(s1,s2)) // false
+</code></pre>
+<p>在for循环里找不到key</p>
+<h2>7. Map和Set</h2>
+<p>set</p>
+<pre><code class="language-js">let setData = new Set()
+setData.add(2)
+setData.add(9.9)
+setData.add(&quot;4&quot;)
+setData.add(&quot;4&quot;)
+
+console.log(setData) // {2, 9.9, '4'}
+
+setData.delete(2)
+
+console.log(setData) // {9.9, '4'}
+
+console.log(setData.has(&quot;4&quot;)) // true
+
+setData.forEach((key,val)=&gt;{
+    console.log(`${key}: ${val}`)
+})
+
+// log 如下
+// 9.9: 9.9
+// 4: 4
+
+// 转换成数组
+const arr = [...setData]
+console.log(arr) // [9.9, '4']
+</code></pre>
+<h2>8 数组的扩展功能</h2>
+<h3><code>Array.from()</code></h3>
+<pre><code class="language-js">
+// 将伪数组转换成真正的数组
+function add() {
+    console.log(arguments); // 伪数组
+
+    const arr = Array.from(arguments) // 转换成真正的数组
+    console.log(arr); 
+    
+  	const arrChange = Array.from(arguments, ele =&gt; ele * 2) // 还可以这样，对每个元素都乘于2
+    console.log(arrChange); 
+  
+    const arr2 = [...arguments] // 也可以通过扩展运算符这样去做转换
+    console.log(arr2);
+}
+
+add(1,2,3)
+</code></pre>
+<h3><code>Array.of()</code></h3>
+<pre><code class="language-js">// 将任意的东西，组合成数组
+console.log(Array.of(1, 23, '3', {id: 1}));
+</code></pre>
+<h3><code>find()</code></h3>
+<pre><code class="language-js">let arr = [1, 2, -2, -5, 10, 9]
+
+let num = arr.find(ele =&gt; ele &lt; 0) // 找出第一个符合条件的元素
+console.log(num)
+</code></pre>
+<p>findIndex：找出第一个符合条件的元素的索引</p>
+<h3><code>entries()</code></h3>
+<pre><code class="language-js">let arr = [1, 2, -2, -5, 10, 9]
+
+
+for(let index of arr.keys()) {
+    console.log(index);
+}
+
+console.log(&quot;-------------&quot;);
+
+for(let ele of arr.values()) {
+    console.log(ele);
+}
+
+console.log(&quot;-------------&quot;);
+
+for(let [index, ele] of arr.entries()) {
+    console.log(index, ele);
+}
+
+console.log(&quot;-------------&quot;);
+
+let letter = ['a', 'b', 'c']
+let it = letter.entries()
+
+console.log(it.next().value);
+console.log(it.next().value);
+console.log(it.next().value);
+console.log(it.next().value);
+</code></pre>
+<h3>includes()`</h3>
+<pre><code class="language-js">
+// 返回一个布尔值，表示是否含有当前值
+console.log([1, 2, 3].includes(2));
+console.log([1, 2, 3].includes(6));
+</code></pre>
+<h2>9 迭代器</h2>
+<pre><code class="language-js">let letter = ['a', 'b', 'c']
+
+let ite = letter[Symbol.iterator]()
+
+console.log(ite.next());
+console.log(ite.next());
+console.log(ite.next());
+console.log(ite.next());
+</code></pre>
+<ul>
+<li>迭代器上一个借口</li>
+<li>迭代器上用于遍历数据结构的指针</li>
+</ul>
+<h2>10 生成器</h2>
+<p>使用<code>function*</code>去定义</p>
+<pre><code class="language-js">function* getNum() {
+    console.log(&quot;one&quot;);
+    yield 2;
+    console.log(&quot;two&quot;);
+    yield 3;
+    console.log(&quot;three&quot;);
+}
+
+let result = getNum() // 会返回一个迭代器
+console.log(result.next());
+console.log(result.next());
+console.log(result.next());
+</code></pre>
+<p>简单理解：</p>
+<ul>
+<li>yield是暂停执行</li>
+<li>next是恢复执行</li>
+</ul>
+<hr />
+<pre><code class="language-js">function* add() {
+    console.log(&quot;start&quot;);
+
+    let x = yield '2'
+    console.log(&quot;x =&gt; &quot; + x);
+    
+    let y = yield '3'
+    console.log(&quot;y =&gt; &quot; + y);
+
+    return x+y;
+}
+
+
+let fn = add()
+console.log(fn.next());
+console.log(fn.next(20)); // 此时才真正的会给x赋值
+console.log(fn.next(10)); // 此时会给y赋值，然后返回{value: 30, done: true}
+</code></pre>
+<p>使用场景：为不具备iterator借口的对象提供遍历操作</p>
+<h2>Promise对象</h2>
+<p>保存着未来才会结束的事件（异步操作）的一个结果</p>
+<p>特点：</p>
+<ol>
+<li>三个状态 Pending（进行） Resolved（成功） Rejected（失败）</li>
+<li>一旦状态改变，就不会再变</li>
+</ol>
+<pre><code class="language-js">let pro = new Promise(function(resolved,rejected) {
+    const res = {
+        code: 200,
+        data: {
+            name: &quot;Jhon&quot;,
+            age: 20
+        },
+        error:{
+            msg:&quot;fuck the world&quot;
+        }
+    }
+
+    setTimeout(()=&gt;{
+        if(res.code === 200) {
+            resolved(res.data)
+        } else {
+            rejected(res.error)
+        }
+    }, 1000)
+})
+
+
+console.log(pro);
+
+pro.then((result)=&gt;{
+    console.log(result);
+})
+</code></pre>
+
+        </div>
+    </article>
+</main>
+<script>
+    hljs.highlightAll();
+
+    let links = document.querySelectorAll(".nav_link");
+
+    function isActive(pathname) {
+        let rootPath = decodeURIComponent(window.location.pathname)
+        let path = pathname + "/"
+
+        return pathname === rootPath || path === rootPath;
+    }
+
+    for (let link of links) {
+        let linkPath = link.getAttribute("href");
+
+        if (isActive(linkPath)) {
+            link.className = "nav_link active_link";
+        }
+    }
+
+    // 页面加载后滚动到 .nac-s 元素
+    window.onload = function() {
+        // 获取第一个 .nac-s 元素
+        const targetElement = document.querySelector('.active_link');
+        if (targetElement) {
+            // 将该元素滚动到视图顶部
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+</script>
+</body>
+</html>
+
